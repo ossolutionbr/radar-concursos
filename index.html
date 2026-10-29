@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Radar de Concursos 2027 · OS Solution</title>
+<meta name="description" content="Veja em quais concursos públicos previstos e abertos você pode se inscrever: informe escolaridade, curso, salário e estado. Grátis, sem cadastro.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Radar de Concursos 2027">
+<meta property="og:description" content="Veja em quais concursos públicos previstos e abertos você pode se inscrever: informe escolaridade, curso, salário e estado. Grátis, sem cadastro.">
+<meta property="og:url" content="https://oliveirabrl.github.io/radar-concursos/">
+<meta name="theme-color" content="#1f3a68">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://oliveirabrl.github.io/radar-concursos/">
+<style>
+/* Layout (padrão OS Solution): cabeçalho com ícone + título + ações → avisos → ficha do candidato à esquerda e abas de resultado à direita → rodapé com "Desenvolvido por OS | SOLUTION". Papel, cartões brancos, cor do produto azul-tinta, acento ocre. */
+@font-face { font-family: "OS Serif"; src: url("fontes/os-serif.ttf") format("truetype"); font-display: block; }
+@font-face { font-family: "Josefin Slab"; font-weight: 400; font-style: normal; font-display: swap; src: url("fontes/josefin-slab-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Josefin Slab"; font-weight: 600; font-style: normal; font-display: swap; src: url("fontes/josefin-slab-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Josefin Slab"; font-weight: 700; font-style: normal; font-display: swap; src: url("fontes/josefin-slab-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Public Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("fontes/public-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Public Sans"; font-weight: 500; font-style: normal; font-display: swap; src: url("fontes/public-sans-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Public Sans"; font-weight: 600; font-style: normal; font-display: swap; src: url("fontes/public-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Public Sans"; font-weight: 700; font-style: normal; font-display: swap; src: url("fontes/public-sans-latin-700-normal.woff2") format("woff2"); }
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --line: #e2ddd3;
+  --fg: #1a1c1e;
+  --muted: #5b6167;
+  --accent: #1f3a68;
+  --accent-hover: #172d52;
+  --accent-soft: #e6eaf2;
+  --on-accent: #ffffff;
+  --gold: #b8860b;
+  --gold-soft: #f7eed6;
+  --gold-ink: #7a5800;
+  --alert: #a3352b;
+  --ok: #2e7d4f;
+  --ok-soft: #e3efe7;
+  --warn: #9a6b00;
+  --warn-soft: #f7eed6;
+  --no: #8b9096;
+  --no-soft: #eeebe4;
+  --logo-sol: #3a3f44;
+  --shadow: 0 1px 2px rgba(26, 28, 30, 0.06), 0 12px 32px -12px rgba(26, 28, 30, 0.22);
+  --f-display: "Josefin Slab", Rockwell, "Roboto Slab", Georgia, serif;
+  --f-body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-os: "OS Serif", "Times New Roman", Times, serif;
+  --radius: 10px;
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(1.75rem, 1.35rem + 1.6vw, 2.4rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131614; --surface: #1b1f1d; --line: #2c322f; --fg: #ecebe6; --muted: #a5aba7;
+    --accent: #8fb0e6; --accent-hover: #a7c2ee; --accent-soft: #1c2636; --on-accent: #131614;
+    --gold: #d7a944; --gold-soft: #2b2515; --gold-ink: #e6c06a; --alert: #e48174;
+    --ok: #4fbf83; --ok-soft: #1b2d23; --warn: #d7a944; --warn-soft: #2b2515; --no: #7f8682; --no-soft: #232826;
+    --logo-sol: #c9ccc8;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 34px -12px rgba(0, 0, 0, 0.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131614; --surface: #1b1f1d; --line: #2c322f; --fg: #ecebe6; --muted: #a5aba7;
+  --accent: #8fb0e6; --accent-hover: #a7c2ee; --accent-soft: #1c2636; --on-accent: #131614;
+  --gold: #d7a944; --gold-soft: #2b2515; --gold-ink: #e6c06a; --alert: #e48174;
+  --ok: #4fbf83; --ok-soft: #1b2d23; --warn: #d7a944; --warn-soft: #2b2515; --no: #7f8682; --no-soft: #232826;
+  --logo-sol: #c9ccc8;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 34px -12px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font: 400 var(--step-0)/1.55 var(--f-body); -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 82rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* cabeçalho */
+.cab { background: var(--surface); border-bottom: 1px solid var(--line); }
+.cab .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; padding-block: 0.9rem; }
+.produto { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+.produto svg { flex: none; width: 44px; height: 44px; border-radius: 11px; }
+.produto h1 { font-family: var(--f-display); font-weight: 700; font-size: var(--step-3); line-height: 1; margin: 0; letter-spacing: -0.005em; text-wrap: balance; }
+.produto p { margin: 0.2rem 0 0; font-size: var(--step--1); color: var(--muted); }
+.acoes { display: flex; gap: 0.5rem; }
+.btn { font: 600 var(--step--1)/1 var(--f-body); padding: 0.6rem 0.9rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.intro { padding-block: 1.25rem 0.25rem; display: grid; gap: 0.35rem; max-width: 46rem; }
+.intro p { margin: 0; }
+.lede { font-size: var(--step-1); color: var(--fg); }
+.stamp { font-size: var(--step--1); color: var(--muted); }
+
+.principal { padding-block: 1rem 2.5rem; }
+.layout { display: grid; grid-template-columns: minmax(17rem, 20rem) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+/* ficha do candidato */
+.ficha { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; display: grid; gap: 1.1rem; }
+@media (max-width: 900px) { .ficha { position: static; } }
+.ficha-h { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line); }
+.ficha-h h2 { font-family: var(--f-display); font-weight: 700; font-size: var(--step-2); line-height: 1.1; margin: 0; }
+.campo { display: grid; gap: 0.4rem; border: 0; padding: 0; margin: 0; min-width: 0; }
+.campo > legend, .campo > label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 0; }
+.dica { font-size: var(--step--1); color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chip span { display: inline-block; padding: 0.32rem 0.7rem; border: 1px solid var(--line); border-radius: 999px; font-size: var(--step--1); background: var(--surface); color: var(--fg); cursor: pointer; white-space: nowrap; }
+.chip input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 600; }
+.chip input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+select, input[type="search"] { width: 100%; font: inherit; font-size: var(--step--1); color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem 0.65rem; min-width: 0; }
+select:disabled { opacity: 0.55; }
+.btn-link { font: inherit; font-size: var(--step--1); background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+/* avisos */
+.aviso { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; align-items: baseline; background: var(--gold-soft); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 0.65rem 0.85rem; font-size: var(--step--1); margin-bottom: 1rem; }
+.aviso b { color: var(--gold-ink); }
+.mudou { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.85rem 1rem; margin-bottom: 1rem; }
+.mudou h2 { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); margin: 0 0 0.4rem; }
+.mudou ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.25rem; font-size: var(--step--1); }
+.mudou li span { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* resumo */
+.resumo { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 1rem; }
+.resumo > div { padding: 0.9rem 1rem; display: grid; gap: 0.15rem; align-content: start; min-width: 0; }
+.resumo > div + div { border-left: 1px solid var(--line); }
+@media (max-width: 640px) {
+  .resumo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .resumo > div:nth-child(3) { border-left: 0; }
+  .resumo > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+.r-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.r-num { font-family: var(--f-display); font-weight: 700; font-size: 1.9rem; line-height: 1.05; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.r-num.ok { color: var(--ok); }
+.r-num.warn { color: var(--warn); }
+.r-sub { font-size: var(--step--1); color: var(--muted); overflow-wrap: anywhere; }
+
+/* abas */
+.abas { display: flex; flex-wrap: wrap; gap: 0.25rem; border-bottom: 1px solid var(--line); margin-bottom: 1rem; }
+.aba { font: 600 var(--step-0) var(--f-body); background: none; border: 0; border-bottom: 3px solid transparent; padding: 0.55rem 0.85rem; color: var(--muted); cursor: pointer; margin-bottom: -1px; }
+.aba[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+
+.lista-ctrl { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; }
+.lista-ctrl input { flex: 1 1 14rem; width: auto; }
+.lista-ctrl select { flex: 0 1 16rem; width: auto; }
+.contagem { font-size: var(--step--1); color: var(--muted); margin: 0 0 0.75rem; }
+
+/* cartões */
+.cards { display: grid; gap: 0.75rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.1rem; display: grid; gap: 0.6rem; min-width: 0; }
+.card.is-nao { opacity: 0.8; }
+.c-top { display: flex; flex-wrap: wrap; gap: 0.375rem; align-items: center; }
+.pill { display: inline-flex; align-items: center; gap: 0.35rem; font-size: var(--step--1); font-weight: 600; padding: 0.15rem 0.55rem; border-radius: 999px; white-space: nowrap; }
+.pill::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: currentColor; }
+.pill.pode { color: var(--ok); background: var(--ok-soft); }
+.pill.dep { color: var(--warn); background: var(--warn-soft); }
+.pill.nao { color: var(--no); background: var(--no-soft); }
+.pill.sem { color: var(--accent); background: var(--accent-soft); }
+.tag { font-size: var(--step--1); color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 0.1rem 0.5rem; white-space: nowrap; }
+.tag.aberta { color: var(--accent); border-color: var(--accent); font-weight: 600; }
+.tag.novo { color: var(--ok); border-color: var(--ok); font-weight: 600; }
+.tag.velho { color: var(--alert); border-color: var(--alert); }
+.c-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; align-items: baseline; }
+.c-title { min-width: 0; }
+.c-title h3 { font-family: var(--f-display); font-size: 1.3rem; font-weight: 700; margin: 0; line-height: 1.15; }
+.c-title p { margin: 0.15rem 0 0; color: var(--muted); font-size: var(--step-0); }
+.c-sal { text-align: right; font-variant-numeric: tabular-nums; }
+.c-sal b { display: block; font-size: var(--step-1); font-weight: 700; }
+.c-sal span { font-size: var(--step--1); color: var(--muted); }
+@media (max-width: 520px) { .c-sal { text-align: left; } }
+.etapas { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px; max-width: 22rem; }
+.etapas i { height: 5px; border-radius: 3px; background: var(--no-soft); }
+.etapas i.on { background: var(--accent); }
+.etapas i.on:last-child { background: var(--gold); }
+.c-situ { display: grid; gap: 0.3rem; }
+.c-situ p { margin: 0; font-size: var(--step--1); color: var(--muted); }
+.c-situ p b { color: var(--fg); font-weight: 600; }
+.c-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 0.4rem 1rem; margin: 0; font-size: var(--step--1); }
+.c-meta div { min-width: 0; }
+.c-meta dt { color: var(--muted); }
+.c-meta dd { margin: 0; overflow-wrap: anywhere; }
+.c-motivo { margin: 0; font-size: var(--step--1); padding: 0.5rem 0.65rem; border-radius: 8px; background: var(--bg); }
+.c-motivo b { font-weight: 600; }
+.c-obs { margin: 0; font-size: var(--step--1); color: var(--muted); }
+.vazio { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); padding: 1.5rem; text-align: center; color: var(--muted); }
+
+/* painéis de gráfico */
+.painel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem; min-width: 0; }
+.painel h2 { font-family: var(--f-display); font-weight: 700; font-size: var(--step-2); line-height: 1.1; margin: 0; }
+.painel .nota { font-size: var(--step--1); color: var(--muted); margin: 0.3rem 0 0.75rem; }
+.legenda { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: var(--step--1); color: var(--muted); margin-bottom: 0.5rem; }
+.sw { display: inline-block; width: 0.65rem; height: 0.65rem; border-radius: 50%; margin-right: 0.35rem; vertical-align: -1px; }
+.sw.pode { background: var(--ok); } .sw.dep { background: var(--warn); } .sw.nao { background: var(--no); } .sw.sem { background: var(--accent); }
+.sw.vazada { background: transparent; border: 2px solid var(--muted); width: 0.55rem; height: 0.55rem; }
+.grafico { position: relative; min-height: 16rem; overflow-x: auto; }
+.grafico svg { display: block; }
+.t-root { font: 700 12px var(--f-body); fill: var(--surface); }
+.t-area { font: 600 12px var(--f-body); fill: var(--fg); }
+.t-folha { font: 400 12px var(--f-body); fill: var(--fg); }
+.t-folha.nao { fill: var(--muted); }
+.t-eixo { font: 400 11.5px var(--f-body); fill: var(--muted); }
+.t-data { font: 600 12px var(--f-body); fill: var(--fg); font-variant-numeric: tabular-nums; }
+.t-ev { font: 400 12px var(--f-body); fill: var(--muted); }
+.t-val { font: 400 11.5px var(--f-body); fill: var(--muted); font-variant-numeric: tabular-nums; }
+.tip { position: absolute; z-index: 3; pointer-events: none; max-width: 17rem; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 0.45rem 0.6rem; font-size: var(--step--1); line-height: 1.4; }
+.tip b { display: block; }
+.tip span { display: block; color: var(--muted); }
+
+/* vitrine dos programas pagos */
+.vitrine { margin-top: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.vitrine > div { min-width: 0; flex: 1 1 18rem; display: grid; gap: 0.2rem; }
+.vitrine p { margin: 0; font-size: var(--step--1); color: var(--muted); }
+.vitrine-rotulo { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-ink); }
+.btn-cta { display: inline-block; text-decoration: none; background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn-cta:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--on-accent); }
+
+/* rodapé padrão OS Solution */
+.rodape { border-top: 1px solid var(--line); background: var(--surface); }
+.rodape .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 0.75rem 1.5rem; padding-block: 1rem; font-size: var(--step--1); color: var(--muted); }
+.rodape .esq { justify-self: start; }
+.rodape nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem 0.9rem; }
+.rodape nav .btn-link { color: var(--muted); }
+.rodape nav .btn-link:hover { color: var(--accent); }
+.rodape .dir { justify-self: end; display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
+@media (max-width: 760px) {
+  .rodape .wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .rodape .esq, .rodape .dir { justify-self: center; }
+}
+.marca { display: inline-flex; align-items: center; gap: 0.45rem; line-height: 1; color: var(--fg); }
+.marca .os { font-family: var(--f-os); font-size: 1rem; }
+.marca .barra { width: 2px; height: 0.95rem; background: var(--gold); }
+.marca .sol { font-family: var(--f-display); font-weight: 400; font-size: 0.95rem; letter-spacing: 0.06em; color: var(--logo-sol); }
+
+/* janelas de informação */
+dialog { border: 1px solid var(--line); border-radius: 12px; padding: 0; max-width: min(40rem, calc(100vw - 32px)); width: 100%; background: var(--surface); color: var(--fg); box-shadow: var(--shadow); }
+dialog::backdrop { background: rgba(19, 22, 20, 0.45); }
+.dlg-h { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.2rem; border-bottom: 1px solid var(--line); }
+.dlg-h h2 { font-family: var(--f-display); font-weight: 700; font-size: var(--step-2); margin: 0; }
+.dlg-c { padding: 1rem 1.2rem 1.3rem; display: grid; gap: 0.75rem; font-size: var(--step-0); max-height: 70vh; overflow: auto; }
+.dlg-c p { margin: 0; max-width: 62ch; }
+.dlg-c dl { display: grid; grid-template-columns: minmax(8rem, max-content) minmax(0, 1fr); gap: 0.5rem 1rem; margin: 0; font-size: var(--step--1); }
+.dlg-c dt { font-weight: 700; }
+.dlg-c dd { margin: 0; color: var(--muted); }
+@media (max-width: 560px) { .dlg-c dl { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: no-preference) {
+  .card { animation: entra 0.25s ease-out both; }
+  @keyframes entra { from { transform: translateY(4px); opacity: 0.6; } to { transform: none; opacity: 1; } }
+}
+
+html { -webkit-text-size-adjust: 100%; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+</style>
+</head>
+<body>
+
+<header class="cab">
+  <div class="wrap">
+    <div class="produto">
+      <svg viewBox="0 0 44 44" aria-hidden="true">
+        <defs><linearGradient id="ic-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2d528f"/><stop offset="1" stop-color="#14264a"/></linearGradient></defs>
+        <rect width="44" height="44" rx="11" fill="url(#ic-g)"/>
+        <g fill="none" stroke="#f3ead6" stroke-width="2.4" stroke-linecap="round">
+          <path d="M11 33 A 22 22 0 0 1 33 11"/>
+          <path d="M11 33 A 14 14 0 0 1 25 19"/>
+          <path d="M11 33 A 6 6 0 0 1 17 27"/>
+        </g>
+        <path d="M11 33 L 31 19" stroke="#d4a017" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="28.5" cy="27.5" r="2.6" fill="#f3ead6"/>
+      </svg>
+      <div>
+        <h1>Radar de Concursos</h1>
+        <p>Concursos públicos previstos e abertos · ciclo 2027</p>
+      </div>
+    </div>
+    <div class="acoes">
+      <button type="button" class="btn" data-abrir="dlg-como">Como funciona</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap intro">
+  <p class="lede">Conte a sua escolaridade e o seu curso e veja em quais concursos você pode se inscrever, quanto pagam e em que fase cada um está.</p>
+  <span class="stamp" id="carimbo">Carregando a base de concursos…</span>
+</div>
+
+<div class="wrap principal">
+  <div class="layout">
+    <form class="ficha" id="ficha" aria-label="Seu perfil">
+      <div class="ficha-h">
+        <h2>Seu perfil</h2>
+        <button type="button" class="btn-link" id="limpar">Limpar</button>
+      </div>
+
+      <fieldset class="campo">
+        <legend>Escolaridade</legend>
+        <div class="chips" id="f-esc">
+          <label class="chip"><input type="radio" name="esc" id="esc-fundamental" value="fundamental"><span>Fundamental</span></label>
+          <label class="chip"><input type="radio" name="esc" id="esc-medio" value="medio"><span>Médio ou técnico</span></label>
+          <label class="chip"><input type="radio" name="esc" id="esc-tecnologo" value="tecnologo"><span>Tecnólogo</span></label>
+          <label class="chip"><input type="radio" name="esc" id="esc-bacharelado" value="bacharelado"><span>Bacharelado</span></label>
+          <label class="chip"><input type="radio" name="esc" id="esc-licenciatura" value="licenciatura"><span>Licenciatura</span></label>
+        </div>
+      </fieldset>
+
+      <div class="campo">
+        <label for="f-curso">Curso de graduação</label>
+        <select id="f-curso">
+          <option value="">Escolha o seu curso</option>
+          <option value="administracao">Administração</option>
+          <option value="contabeis">Ciências Contábeis</option>
+          <option value="comex">Comércio Exterior ou Relações Internacionais</option>
+          <option value="comunicacao">Comunicação (Jornalismo, RP, Publicidade)</option>
+          <option value="ti">Computação, TI ou Sistemas</option>
+          <option value="direito">Direito</option>
+          <option value="economia">Economia</option>
+          <option value="engenharia">Engenharia</option>
+          <option value="estatistica">Estatística ou Matemática</option>
+          <option value="gestao">Gestão (Pública, RH, Logística, Processos)</option>
+          <option value="arquivologia">Arquivologia, Biblioteconomia ou Museologia</option>
+          <option value="humanas">Letras, Pedagogia ou Ciências Humanas</option>
+          <option value="saude">Saúde (Enfermagem, Medicina, Farmácia e outras)</option>
+          <option value="outra">Outra área</option>
+        </select>
+        <p class="dica" id="dica-curso">Só para quem tem curso superior.</p>
+      </div>
+
+      <fieldset class="campo">
+        <legend>Salário inicial mínimo</legend>
+        <div class="chips" id="f-sal">
+          <label class="chip"><input type="radio" name="sal" id="sal-0" value="0"><span>Qualquer</span></label>
+          <label class="chip"><input type="radio" name="sal" id="sal-3000" value="3000"><span>R$ 3 mil</span></label>
+          <label class="chip"><input type="radio" name="sal" id="sal-5000" value="5000"><span>R$ 5 mil</span></label>
+          <label class="chip"><input type="radio" name="sal" id="sal-8000" value="8000"><span>R$ 8 mil</span></label>
+          <label class="chip"><input type="radio" name="sal" id="sal-10000" value="10000"><span>R$ 10 mil</span></label>
+          <label class="chip"><input type="radio" name="sal" id="sal-15000" value="15000"><span>R$ 15 mil</span></label>
+          <label class="chip"><input type="radio" name="sal" id="sal-20000" value="20000"><span>R$ 20 mil</span></label>
+        </div>
+      </fieldset>
+
+      <div class="campo">
+        <label for="f-area">Área de interesse</label>
+        <select id="f-area"><option value="">Todas as áreas</option></select>
+      </div>
+
+      <div class="campo">
+        <label for="f-uf">Onde quer trabalhar</label>
+        <select id="f-uf">
+          <option value="">Qualquer lugar</option>
+          <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option>
+          <option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option>
+          <option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option>
+          <option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option>
+          <option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option>
+          <option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option>
+          <option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option>
+        </select>
+        <p class="dica">Concursos nacionais aparecem em qualquer estado.</p>
+      </div>
+
+      <fieldset class="campo">
+        <legend>Mostrar</legend>
+        <div class="chips" id="f-mostrar">
+          <label class="chip"><input type="radio" name="mostrar" id="mostrar-pode" value="pode"><span>Onde posso</span></label>
+          <label class="chip"><input type="radio" name="mostrar" id="mostrar-dep" value="pode_dep"><span>Posso ou depende</span></label>
+          <label class="chip"><input type="radio" name="mostrar" id="mostrar-todos" value="todos"><span>Todos</span></label>
+        </div>
+      </fieldset>
+    </form>
+
+    <main id="resultado" aria-live="polite">
+      <div class="aviso" id="aviso-exemplo" hidden>
+        <span><b>Exemplo carregado:</b> tecnólogo em Comércio Exterior, salário a partir de R$ 10 mil. Troque pelos seus dados ao lado.</span>
+        <button type="button" class="btn-link" id="limpar-2">Começar do zero</button>
+      </div>
+
+      <section class="mudou" id="mudou" hidden>
+        <h2>Mudou nos últimos 7 dias</h2>
+        <ul id="mudou-lista"></ul>
+      </section>
+
+      <section class="resumo" aria-label="Resumo">
+        <div><span class="r-label">Você pode concorrer</span><span class="r-num ok" id="k-pode">0</span><span class="r-sub" id="k-pode-sub">concursos</span></div>
+        <div><span class="r-label">Depende do edital</span><span class="r-num warn" id="k-dep">0</span><span class="r-sub">cargo, especialidade ou requisito extra</span></div>
+        <div><span class="r-label">Maior inicial para você</span><span class="r-num" id="k-top">—</span><span class="r-sub" id="k-top-sub">nenhum ainda</span></div>
+        <div><span class="r-label">Inscrições abertas</span><span class="r-num" id="k-abertas">0</span><span class="r-sub" id="k-abertas-sub">no seu perfil</span></div>
+      </section>
+
+      <div class="abas" role="tablist" aria-label="Formas de ver">
+        <button class="aba" role="tab" id="aba-lista" aria-controls="p-lista" aria-selected="true" type="button">Lista</button>
+        <button class="aba" role="tab" id="aba-mapa" aria-controls="p-mapa" aria-selected="false" type="button">Mapa mental</button>
+        <button class="aba" role="tab" id="aba-prazos" aria-controls="p-prazos" aria-selected="false" type="button">Prazos</button>
+        <button class="aba" role="tab" id="aba-salarios" aria-controls="p-salarios" aria-selected="false" type="button">Salários</button>
+      </div>
+
+      <section id="p-lista" role="tabpanel" aria-labelledby="aba-lista">
+        <div class="lista-ctrl">
+          <input type="search" id="f-busca" placeholder="Buscar órgão, cargo, banca ou cidade" aria-label="Buscar">
+          <select id="f-ordem" aria-label="Ordenar">
+            <option value="rec">Ordenar: melhor para você</option>
+            <option value="sal">Ordenar: maior salário</option>
+            <option value="etapa">Ordenar: fase mais avançada</option>
+            <option value="prazo">Ordenar: prazo mais próximo</option>
+            <option value="nome">Ordenar: nome do órgão</option>
+          </select>
+        </div>
+        <p class="contagem" id="contagem"></p>
+        <div class="cards" id="cards"></div>
+      </section>
+
+      <section id="p-mapa" class="painel" role="tabpanel" aria-labelledby="aba-mapa" hidden>
+        <h2>Mapa mental por área</h2>
+        <p class="nota">Cada ramo é uma área; as folhas são os cargos da sua seleção, do maior para o menor salário. Passe o mouse ou toque numa folha para ver os detalhes.</p>
+        <div class="legenda"><span><i class="sw pode"></i>Pode concorrer</span><span><i class="sw dep"></i>Depende</span><span><i class="sw nao"></i>Fora do perfil</span><span><i class="sw sem"></i>Sem perfil informado</span></div>
+        <div class="grafico" id="g-mapa"></div>
+      </section>
+
+      <section id="p-prazos" class="painel" role="tabpanel" aria-labelledby="aba-prazos" hidden>
+        <h2>Prazos que vêm aí</h2>
+        <p class="nota">Fim de inscrições e prazos de edital em bolinha cheia, datas de prova em bolinha vazada. A linha tracejada marca hoje.</p>
+        <div class="legenda"><span><i class="sw pode"></i>Pode concorrer</span><span><i class="sw dep"></i>Depende</span><span><i class="sw nao"></i>Fora do perfil</span><span><i class="sw vazada"></i>Prova</span></div>
+        <div class="grafico" id="g-prazos"></div>
+      </section>
+
+      <section id="p-salarios" class="painel" role="tabpanel" aria-labelledby="aba-salarios" hidden>
+        <h2>Salário de cada cargo</h2>
+        <p class="nota">Inicial bruto informado pelas fontes. Barras mais claras mostram o teto ou o piso de uma faixa, não o inicial.</p>
+        <div class="legenda"><span><i class="sw pode"></i>Pode concorrer</span><span><i class="sw dep"></i>Depende</span><span><i class="sw nao"></i>Fora do perfil</span></div>
+        <div class="grafico" id="g-salarios"></div>
+      </section>
+
+      <aside class="vitrine" aria-label="Programas da OS Solution">
+        <div>
+          <span class="vitrine-rotulo">Também da OS Solution</span>
+          <p>Programas simples para organizar a vida financeira e a gestão de pequenos negócios. Pagamento único, sem mensalidade.</p>
+        </div>
+        <a class="btn btn-cta" href="https://oliveirabrl.github.io/controle-financeiro/" target="_blank" rel="noopener">Conheça o Controle Financeiro Pessoal</a>
+      </aside>
+    </main>
+  </div>
+</div>
+
+<footer class="rodape">
+  <div class="wrap">
+    <span class="esq" id="rodape-base">Base de concursos</span>
+    <nav aria-label="Informações">
+      <button type="button" class="btn-link" data-abrir="dlg-como">Como funciona</button>
+      <button type="button" class="btn-link" data-abrir="dlg-termos">Termos de uso</button>
+      <button type="button" class="btn-link" data-abrir="dlg-privacidade">Privacidade</button>
+      <button type="button" class="btn-link" data-abrir="dlg-sobre">Sobre</button>
+      <span>versão 1.0</span>
+    </nav>
+    <span class="dir">Desenvolvido por <span class="marca" aria-label="OS Solution"><span class="os">OS</span><span class="barra"></span><span class="sol">SOLUTION</span></span></span>
+  </div>
+</footer>
+
+<dialog id="dlg-como" aria-labelledby="dlg-como-t">
+  <div class="dlg-h"><h2 id="dlg-como-t">Como funciona</h2><button type="button" class="btn" data-fechar>Fechar</button></div>
+  <div class="dlg-c">
+    <p>Você preenche o seu perfil e o radar compara com os requisitos de cada concurso da base. Nada é enviado: a conta é feita aqui, no seu navegador.</p>
+    <dl>
+      <dt>Pode concorrer</dt>
+      <dd>Sua escolaridade atende ao mínimo e, nos cargos de nível superior, o edital aceita qualquer área ou a sua área está na lista.</dd>
+      <dt>Depende do edital</dt>
+      <dd>O concurso tem cargos com exigências diferentes, a formação ainda não foi definida ou há um requisito que o radar não confere, como OAB, registro em conselho ou tempo de prática.</dd>
+      <dt>Fora do perfil</dt>
+      <dd>Exige escolaridade maior ou um curso que você não informou.</dd>
+      <dt>Tecnólogo</dt>
+      <dd>É graduação de nível superior reconhecida pelo MEC e vale quando o edital pede nível superior em qualquer área. Não vale onde a lei exige bacharelado em curso específico, como Direito, ou licenciatura.</dd>
+      <dt>Fase</dt>
+      <dd>Os seis traços do cartão acompanham o andamento: previsto, solicitado, comissão formada, autorizado, banca contratada e edital publicado. O último traço fica ocre quando o edital sai. Só as duas últimas fases costumam ter datas seguras.</dd>
+      <dt>Salário</dt>
+      <dd>Inicial bruto. Quando o órgão divulga só uma faixa, o filtro usa o valor mais alto e o cartão avisa que é uma faixa.</dd>
+      <dt>Atualização</dt>
+      <dd>De segunda a sexta, a base é revisada com notícias e editais (Diário Oficial, sites dos órgãos e das bancas, Folha Dirigida, Gran Cursos, Estratégia e outros), com inclusão de concursos novos e saída dos encerrados. Cada cartão mostra a fonte e quando foi verificado, e um aviso aparece quando a informação passa de dez dias sem confirmação.</dd>
+      <dt>Importante</dt>
+      <dd>O radar é uma ferramenta de consulta. Ele não substitui o edital oficial, que é sempre o que vale, nem é ligado a órgãos públicos ou bancas.</dd>
+    </dl>
+  </div>
+</dialog>
+
+<dialog id="dlg-termos" aria-labelledby="dlg-termos-t">
+  <div class="dlg-h"><h2 id="dlg-termos-t">Termos de uso</h2><button type="button" class="btn" data-fechar>Fechar</button></div>
+  <div class="dlg-c">
+    <p><b>Versão de 29/10/2026.</b> Ao usar o Radar de Concursos, você concorda com estes termos.</p>
+    <dl>
+      <dt>O que é</dt>
+      <dd>Ferramenta gratuita de consulta que reúne informações públicas sobre concursos previstos, autorizados e abertos e indica, a partir do perfil que você informa, onde é possível se inscrever. Não exige cadastro.</dd>
+      <dt>Informação, não edital</dt>
+      <dd>Os dados vêm de editais, publicações oficiais e notícias, com o link da fonte em cada concurso. Podem conter erros, atrasos ou mudanças posteriores. O edital oficial e o órgão responsável sempre prevalecem: confira os requisitos, datas e valores antes de se inscrever ou tomar qualquer decisão.</dd>
+      <dt>Sem vínculo</dt>
+      <dd>O radar não é ligado a órgãos públicos, bancas, cursinhos ou governos e não faz inscrições. A indicação "pode concorrer" é uma estimativa a partir das regras publicadas e não garante inscrição, aprovação ou posse.</dd>
+      <dt>Responsabilidade</dt>
+      <dd>A ferramenta é oferecida como está, de graça. Não respondemos por decisões tomadas só com base nela, nem por prazos perdidos ou inscrições feitas a partir de informação que o edital oficial contradiga.</dd>
+      <dt>Disponibilidade</dt>
+      <dd>O serviço pode ser alterado, ficar fora do ar, deixar de ser atualizado ou ser encerrado a qualquer momento, sem aviso.</dd>
+      <dt>Direitos</dt>
+      <dd>A marca OS Solution, o código e o visual do radar pertencem à empresa responsável. Informações de concursos são públicas e citadas com a fonte. Não é permitido copiar o site ou a base para revenda.</dd>
+      <dt>Responsável</dt>
+      <dd>OS Solution, marca de produto da OS CAPITAL LTDA, CNPJ 59.437.693/0001-27, Av. Paulista, 1636, São Paulo/SP. Contato: oscapitaloficial@gmail.com.</dd>
+      <dt>Lei aplicável</dt>
+      <dd>Estes termos seguem a lei brasileira, incluindo o Código de Defesa do Consumidor e a Lei Geral de Proteção de Dados.</dd>
+    </dl>
+  </div>
+</dialog>
+
+<dialog id="dlg-privacidade" aria-labelledby="dlg-priv-t">
+  <div class="dlg-h"><h2 id="dlg-priv-t">Privacidade</h2><button type="button" class="btn" data-fechar>Fechar</button></div>
+  <div class="dlg-c">
+    <p>O radar não pede cadastro, nome, e-mail nem documento, e não usa cookies, rastreadores ou ferramentas de análise de visitas.</p>
+    <p>O perfil que você preenche (escolaridade, curso, salário, área e estado) fica guardado só neste navegador, para você não precisar preencher de novo. Ele não é enviado para nenhum lugar e a OS Solution não tem acesso a ele. Para apagar, use "Limpar" ou limpe os dados do site no navegador.</p>
+    <p>Fontes e gráficos ficam no próprio site; nada é carregado de outros serviços. O serviço de hospedagem registra o endereço de acesso (IP) do aparelho, como acontece em qualquer site, para funcionar e por segurança. Os links de fonte e de produtos abrem outros sites, com regras próprias.</p>
+    <p>Dúvidas sobre privacidade: oscapitaloficial@gmail.com.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-sobre" aria-labelledby="dlg-sobre-t">
+  <div class="dlg-h"><h2 id="dlg-sobre-t">Sobre</h2><button type="button" class="btn" data-fechar>Fechar</button></div>
+  <div class="dlg-c">
+    <p><b>Radar de Concursos 2027</b>, versão 1.0.</p>
+    <p>Reúne concursos públicos previstos, autorizados e abertos no Brasil e mostra, para cada perfil, onde é possível se inscrever.</p>
+    <p id="sobre-base">Base de concursos carregando…</p>
+    <p>Desenvolvido por <span class="marca" aria-label="OS Solution"><span class="os">OS</span><span class="barra"></span><span class="sol">SOLUTION</span></span></p>
+  </div>
+</dialog>
+
+<script src="vendor/d3.min.js"></script>
+<script>
+(() => {
+  let DADOS = [];
+  let META = {};
+  const DIAS_ALERTA = 10;
+  const CHAVE = 'radar-concursos-perfil-v1';
+  const EXEMPLO = { esc: 'tecnologo', curso: 'comex', sal: 10000, area: '', uf: '', mostrar: 'pode_dep' };
+  const VAZIO = { esc: '', curso: '', sal: 0, area: '', uf: '', mostrar: 'pode_dep' };
+  const NIVEL = { fundamental: 0, medio: 1, tecnologo: 2, bacharelado: 2, licenciatura: 2 };
+  const NIVEL_CARGO = { fundamental: 0, medio: 1, superior: 2 };
+  const CURSO = {
+    administracao: 'Administração', contabeis: 'Ciências Contábeis', comex: 'Comércio Exterior', comunicacao: 'Comunicação',
+    ti: 'TI', direito: 'Direito', economia: 'Economia', engenharia: 'Engenharia', estatistica: 'Estatística',
+    gestao: 'Gestão', arquivologia: 'Arquivologia', humanas: 'Humanas', saude: 'Saúde', outra: 'outra área', licenciatura: 'licenciatura',
+  };
+  const ETAPAS = ['Previsto', 'Solicitado', 'Comissão formada', 'Autorizado', 'Banca contratada', 'Edital publicado'];
+  const ROTULO_ST = { pode: 'Pode concorrer', dep: 'Depende do edital', nao: 'Fora do perfil', sem: 'Informe seu perfil' };
+  const ORDEM_ST = { pode: 3, dep: 2, sem: 1, nao: 0 };
+  const COR = { pode: 'var(--ok)', dep: 'var(--warn)', nao: 'var(--no)', sem: 'var(--accent)' };
+  const hoje = d3.utcDay.floor(new Date());
+  const parse = d3.utcParse('%Y-%m-%d');
+
+  let perfil = { ...EXEMPLO };
+  let exemploAtivo = true;
+  try {
+    const salvo = JSON.parse(localStorage.getItem(CHAVE) || 'null');
+    if (salvo && typeof salvo === 'object') { perfil = { ...VAZIO, ...salvo }; exemploAtivo = false; }
+  } catch (e) { /* armazenamento indisponível: segue com o exemplo */ }
+  let abaAtiva = 'lista';
+
+  /* ---------- regra de elegibilidade ---------- */
+  function avaliar(r, p) {
+    if (!p.esc) return { st: 'sem', motivo: 'Escolha a sua escolaridade para saber se pode concorrer.' };
+    if (r.escolaridade === 'a_definir') return { st: 'dep', motivo: 'A escolaridade exigida ainda não foi divulgada.' };
+    const nu = NIVEL[p.esc];
+    const nr = NIVEL_CARGO[r.escolaridade];
+    const f = r.formacoes || [];
+    if (nu < nr) return { st: 'nao', motivo: nr === 2 ? 'Exige curso superior completo.' : 'Exige ensino médio completo.' };
+    let res;
+    if (nr < 2) {
+      if (f.includes('varia')) {
+        res = nu >= 2
+          ? { st: 'dep', motivo: 'Tem cargos de níveis e formações diferentes; confira cada um no edital.' }
+          : { st: 'dep', motivo: 'Tem cargos que aceitam a sua escolaridade, mas o salário mostrado pode ser de cargos de nível superior.' };
+      } else {
+        res = { st: 'pode', motivo: nr === 1 ? 'Pede ensino médio completo.' : 'Aceita ensino fundamental.' };
+      }
+    } else if (f.includes('a_definir')) {
+      res = { st: 'dep', motivo: 'A formação exigida ainda não foi definida.' };
+    } else if (f.includes('varia')) {
+      res = { st: 'dep', motivo: 'A formação exigida muda conforme o cargo ou a especialidade.' };
+    } else if (f.includes('qualquer')) {
+      if (p.esc === 'tecnologo' && r.tecnologo_ok === false) res = { st: 'nao', motivo: 'Não aceita diploma de tecnólogo.' };
+      else if (p.esc === 'tecnologo' && r.tecnologo_ok == null) res = { st: 'dep', motivo: 'Aceita qualquer área; confirme no edital se vale diploma de tecnólogo.' };
+      else res = { st: 'pode', motivo: 'Aceita graduação em qualquer área.' };
+    } else {
+      const lista = f.map((k) => CURSO[k] || k).join(', ');
+      const casa = f.includes(p.curso) || (f.includes('licenciatura') && p.esc === 'licenciatura');
+      if (!casa && !p.curso && !f.includes('licenciatura')) res = { st: 'dep', motivo: 'Escolha o seu curso para conferir. Aceita: ' + lista + '.' };
+      else if (!casa) res = { st: 'nao', motivo: 'Exige formação em ' + lista + '.' };
+      else if (p.esc === 'tecnologo' && r.tecnologo_ok === false) res = { st: 'nao', motivo: 'Exige bacharelado ou licenciatura; não aceita tecnólogo.' };
+      else if (p.esc === 'tecnologo' && r.tecnologo_ok == null) res = { st: 'dep', motivo: 'Sua área é aceita; confirme no edital se vale diploma de tecnólogo.' };
+      else res = { st: 'pode', motivo: 'Sua formação está entre as aceitas.' };
+    }
+    if (r.extra) {
+      if (r.extra_tipo === 'registro' && res.st === 'pode') res = { st: 'dep', motivo: res.motivo + ' Também exige ' + r.extra + '.' };
+      else if (r.extra_tipo === 'etapa' && res.st !== 'nao') res = { st: res.st, motivo: res.motivo + ' Inclui ' + r.extra + '.' };
+    }
+    return res;
+  }
+
+  /* ---------- seleção ---------- */
+  const norm = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  function proximaData(r) {
+    const ds = [r.prazo_data, r.prova_data].filter(Boolean).map(parse).filter((d) => d >= hoje).sort((a, b) => a - b);
+    return ds[0] || null;
+  }
+  function filtrar() {
+    const q = norm(document.getElementById('f-busca').value).trim();
+    const base = DADOS
+      .map((r) => ({ r, a: avaliar(r, perfil) }))
+      .filter(({ r }) => (!perfil.sal || (r.salario != null && r.salario >= perfil.sal)))
+      .filter(({ r }) => !perfil.area || r.area === perfil.area)
+      .filter(({ r }) => !perfil.uf || r.uf.includes(perfil.uf) || r.uf.includes('BR'))
+      .filter(({ r }) => !q || norm([r.orgao, r.cargo, r.area, r.banca, r.local, r.rotulo].join(' ')).includes(q));
+    const visiveis = base.filter(({ a }) => {
+      if (a.st === 'sem' || perfil.mostrar === 'todos') return true;
+      if (perfil.mostrar === 'pode') return a.st === 'pode';
+      return a.st === 'pode' || a.st === 'dep';
+    });
+    return { base, visiveis };
+  }
+  function ordenar(lista) {
+    const modo = document.getElementById('f-ordem').value;
+    const sal = (x) => x.r.salario ?? -1;
+    const cmp = {
+      rec: (x, y) => ORDEM_ST[y.a.st] - ORDEM_ST[x.a.st] || sal(y) - sal(x),
+      sal: (x, y) => sal(y) - sal(x),
+      etapa: (x, y) => y.r.etapa - x.r.etapa || sal(y) - sal(x),
+      prazo: (x, y) => { const a = proximaData(x.r); const b = proximaData(y.r); if (a && b) return a - b; if (a) return -1; if (b) return 1; return y.r.etapa - x.r.etapa; },
+      nome: (x, y) => x.r.orgao.localeCompare(y.r.orgao, 'pt') || x.r.cargo.localeCompare(y.r.cargo, 'pt'),
+    }[modo];
+    return lista.slice().sort(cmp);
+  }
+
+  /* ---------- helpers de DOM ---------- */
+  function el(tag, cls, txt) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (txt != null) n.textContent = txt;
+    return n;
+  }
+  const mil = (v) => 'R$ ' + (v / 1000).toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + ' mil';
+  const salCurto = (r) => (r.salario_tipo === 'teto' ? 'até ' : r.salario_tipo === 'piso' ? 'desde ' : '') + mil(r.salario);
+  const fmtDia = (d) => String(d.getUTCDate()).padStart(2, '0') + '/' + String(d.getUTCMonth() + 1).padStart(2, '0') + '/' + d.getUTCFullYear();
+  const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  const fmtMes = (d) => MESES[d.getUTCMonth()] + '/' + String(d.getUTCFullYear()).slice(2);
+
+  /* ---------- resumo ---------- */
+  function desenharResumo(base) {
+    const temPerfil = !!perfil.esc;
+    const pode = base.filter((x) => x.a.st === 'pode');
+    const dep = base.filter((x) => x.a.st === 'dep');
+    document.getElementById('k-pode').textContent = temPerfil ? pode.length : '—';
+    document.getElementById('k-pode-sub').textContent = temPerfil ? 'de ' + base.length + ' na sua seleção' : 'informe a escolaridade';
+    document.getElementById('k-dep').textContent = temPerfil ? dep.length : '—';
+    const top = pode.filter((x) => x.r.salario != null && x.r.salario_tipo === 'inicial').sort((a, b) => b.r.salario - a.r.salario)[0];
+    document.getElementById('k-top').textContent = top ? top.r.salario_txt.replace(/\s*\(.*\)$/, '') : '—';
+    document.getElementById('k-top-sub').textContent = top ? top.r.rotulo : (temPerfil ? 'nenhum cargo com inicial conhecido' : 'informe a escolaridade');
+    const abertas = base.filter((x) => x.r.etapa === 6 && (!temPerfil || x.a.st !== 'nao'));
+    document.getElementById('k-abertas').textContent = abertas.length;
+    document.getElementById('k-abertas-sub').textContent = abertas.length ? abertas.map((x) => x.r.rotulo.split(' · ')[0]).filter((v, i, arr) => arr.indexOf(v) === i).join(', ') : 'nenhuma no momento';
+  }
+
+  /* ---------- lista ---------- */
+  function cartao({ r, a }) {
+    const c = el('article', 'card is-' + a.st);
+    const top = el('div', 'c-top');
+    top.append(el('span', 'pill ' + a.st, ROTULO_ST[a.st]));
+    if (r.etapa === 6) top.append(el('span', 'tag aberta', 'Inscrições abertas'));
+    const add = r.adicionado_em ? parse(r.adicionado_em) : null;
+    const ver = r.verificado_em ? parse(r.verificado_em) : null;
+    const novidade = META.mudancas && META.mudancas.some((m) => m.id === r.id && parse(m.data) >= d3.utcDay.offset(hoje, -7));
+    if (add && add >= d3.utcDay.offset(hoje, -7) && add > parse(META.criado_em || '2026-10-29')) top.append(el('span', 'tag novo', 'Novo'));
+    else if (novidade) top.append(el('span', 'tag novo', 'Atualizado'));
+    if (ver) {
+      const dias = d3.utcDay.count(ver, hoje);
+      if (dias > DIAS_ALERTA) top.append(el('span', 'tag velho', 'Sem confirmação há ' + dias + ' dias'));
+    }
+    top.append(el('span', 'tag', r.area));
+    if (r.temporario) top.append(el('span', 'tag', 'Temporário'));
+    c.append(top);
+
+    const head = el('div', 'c-head');
+    const tit = el('div', 'c-title');
+    tit.append(el('h3', null, r.orgao), el('p', null, r.cargo));
+    const sal = el('div', 'c-sal');
+    sal.append(el('b', null, r.salario_txt), el('span', null, r.salario == null ? 'salário a confirmar' : r.salario_tipo === 'inicial' ? 'inicial' : 'faixa salarial'));
+    head.append(tit, sal);
+    c.append(head);
+
+    const situ = el('div', 'c-situ');
+    const bar = el('div', 'etapas');
+    bar.setAttribute('role', 'img');
+    bar.setAttribute('aria-label', 'Fase: ' + ETAPAS[r.etapa - 1] + ' (' + r.etapa + ' de 6)');
+    for (let i = 1; i <= 6; i++) { const t = el('i', i <= r.etapa ? 'on' : ''); t.title = ETAPAS[i - 1]; bar.append(t); }
+    const ps = el('p');
+    ps.append(el('b', null, r.status), document.createTextNode(' · Banca: ' + r.banca));
+    situ.append(bar, ps);
+    c.append(situ);
+
+    const meta = el('dl', 'c-meta');
+    for (const [k, v] of [['Vagas', r.vagas_txt], ['Onde', r.local], ['Próximo marco', r.prazo_txt], ['Formação', r.formacao]]) {
+      const d = el('div');
+      d.append(el('dt', null, k), el('dd', null, v));
+      meta.append(d);
+    }
+    c.append(meta);
+
+    const mot = el('p', 'c-motivo');
+    mot.append(el('b', null, 'Por quê: '), document.createTextNode(a.motivo));
+    c.append(mot);
+
+    const obs = el('p', 'c-obs');
+    if (r.observacao) obs.append(document.createTextNode(r.observacao + ' '));
+    obs.append(document.createTextNode('Fonte: '));
+    const link = el('a', null, r.fonte_nome);
+    link.href = r.fonte; link.target = '_blank'; link.rel = 'noopener noreferrer';
+    obs.append(link);
+    if (ver) obs.append(document.createTextNode(' · verificado em ' + fmtDia(ver) + '.'));
+    c.append(obs);
+    return c;
+  }
+  function desenharLista(visiveis, base) {
+    const box = document.getElementById('cards');
+    box.replaceChildren();
+    const lista = ordenar(visiveis);
+    document.getElementById('contagem').textContent = lista.length === base.length
+      ? lista.length + ' concursos na sua seleção.'
+      : 'Mostrando ' + lista.length + ' de ' + base.length + ' concursos da sua seleção. Para ver os outros, escolha "Todos" em Mostrar.';
+    if (!lista.length) {
+      box.append(el('div', 'vazio', 'Nenhum concurso com esse perfil e esses filtros. Tente baixar o salário mínimo, trocar o estado ou mostrar também os que dependem do edital.'));
+      return;
+    }
+    const frag = document.createDocumentFragment();
+    lista.forEach((x) => frag.append(cartao(x)));
+    box.append(frag);
+  }
+
+  /* ---------- tooltip e medida ---------- */
+  function criarTip(box) {
+    const tip = el('div', 'tip');
+    tip.hidden = true;
+    box.append(tip);
+    return {
+      show(evt, x) {
+        tip.replaceChildren(el('b', null, x.r.orgao), el('span', null, x.r.cargo), el('span', null, 'Salário: ' + x.r.salario_txt), el('span', null, ROTULO_ST[x.a.st] + ' · ' + x.r.status));
+        tip.hidden = false;
+        const bb = box.getBoundingClientRect();
+        const px = evt.clientX - bb.left + box.scrollLeft;
+        const py = evt.clientY - bb.top;
+        let xx = px + 14;
+        if (xx + tip.offsetWidth > box.scrollLeft + bb.width) xx = Math.max(box.scrollLeft, px - tip.offsetWidth - 14);
+        let yy = py + 14;
+        if (yy + tip.offsetHeight > bb.height) yy = Math.max(0, py - tip.offsetHeight - 10);
+        tip.style.left = xx + 'px';
+        tip.style.top = yy + 'px';
+      },
+      hide() { tip.hidden = true; },
+    };
+  }
+  function medidor(svg) {
+    const g = svg.append('g').attr('opacity', 0);
+    return {
+      w(t, cls) { const n = g.append('text').attr('class', cls).text(t); const w = n.node().getComputedTextLength(); n.remove(); return w; },
+      fim() { g.remove(); },
+    };
+  }
+  function semDados(box, msg) { box.replaceChildren(el('div', 'vazio', msg)); }
+
+  /* ---------- mapa mental ---------- */
+  function desenharMapa(visiveis) {
+    const box = document.getElementById('g-mapa');
+    box.replaceChildren();
+    if (!visiveis.length) return semDados(box, 'Nada para mostrar com esse perfil e esses filtros.');
+    const grupos = d3.groups(visiveis, (x) => x.r.area).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0], 'pt'));
+    const raiz = 'Seus concursos';
+    const W = Math.max(300, box.clientWidth || 600);
+    const svg = d3.select(box).append('svg').attr('role', 'img').attr('aria-label', 'Mapa mental dos concursos por área');
+    const m = medidor(svg);
+    const rootW = m.w(raiz, 't-root') + 24;
+    const areaW = d3.max(grupos, (g) => m.w(g[0], 't-area')) + 20;
+    const folhaW = d3.max(visiveis, (x) => m.w(x.r.rotulo, 't-folha')) + 16;
+    m.fim();
+    const pillH = 24, rowH = 22, gap = Math.max(24, Math.min(64, (W - rootW - areaW - folhaW - 8) / 2));
+    const vbW = Math.max(W, rootW + areaW + folhaW + gap * 2 + 8);
+    let y = 14;
+    const nos = grupos.map(([area, xs]) => {
+      const itens = xs.slice().sort((a, b) => (b.r.salario ?? -1) - (a.r.salario ?? -1)).map((x) => { const it = { x, y }; y += rowH; return it; });
+      const n = { area, itens, y: (itens[0].y + itens[itens.length - 1].y) / 2 };
+      y += 10;
+      return n;
+    });
+    const H = y;
+    const yRaiz = (nos[0].y + nos[nos.length - 1].y) / 2;
+    const xArea = rootW + gap, xFolha = xArea + areaW + gap;
+    svg.attr('width', vbW).attr('height', H).attr('viewBox', `0 0 ${vbW} ${H}`);
+    if (vbW <= W) svg.attr('width', '100%').attr('height', null);
+    const link = d3.linkHorizontal().x((p) => p[0]).y((p) => p[1]);
+    const lg = svg.append('g').attr('fill', 'none').style('stroke', 'var(--line)').attr('stroke-width', 1.5);
+    for (const n of nos) {
+      lg.append('path').attr('d', link({ source: [rootW, yRaiz], target: [xArea, n.y] }));
+      for (const it of n.itens) lg.append('path').attr('d', link({ source: [xArea + areaW, n.y], target: [xFolha, it.y] }));
+    }
+    svg.append('rect').attr('x', 0).attr('y', yRaiz - pillH / 2).attr('width', rootW).attr('height', pillH).attr('rx', pillH / 2).style('fill', 'var(--fg)');
+    svg.append('text').attr('class', 't-root').attr('x', rootW / 2).attr('y', yRaiz).attr('dy', '0.35em').attr('text-anchor', 'middle').text(raiz);
+    for (const n of nos) {
+      svg.append('rect').attr('x', xArea).attr('y', n.y - pillH / 2).attr('width', areaW).attr('height', pillH).attr('rx', 6)
+        .style('fill', 'var(--bg)').style('stroke', 'var(--line)');
+      svg.append('text').attr('class', 't-area').attr('x', xArea + areaW / 2).attr('y', n.y).attr('dy', '0.35em').attr('text-anchor', 'middle').text(n.area);
+    }
+    const tip = criarTip(box);
+    for (const n of nos) {
+      for (const it of n.itens) {
+        const g = svg.append('g');
+        g.append('circle').attr('cx', xFolha).attr('cy', it.y).attr('r', 4.5).style('fill', COR[it.x.a.st]);
+        g.append('text').attr('class', 't-folha' + (it.x.a.st === 'nao' ? ' nao' : '')).attr('x', xFolha + 9).attr('y', it.y).attr('dy', '0.35em').text(it.x.r.rotulo);
+        g.append('rect').attr('x', xFolha - 6).attr('y', it.y - rowH / 2).attr('width', vbW - xFolha + 6).attr('height', rowH).style('fill', 'transparent')
+          .on('pointermove', (e) => tip.show(e, it.x)).on('pointerleave', () => tip.hide());
+      }
+    }
+  }
+
+  /* ---------- prazos ---------- */
+  function desenharPrazos(visiveis) {
+    const box = document.getElementById('g-prazos');
+    box.replaceChildren();
+    const ev = [];
+    for (const x of visiveis) {
+      if (x.r.prazo_data) ev.push({ d: parse(x.r.prazo_data), x, prova: false, txt: x.r.prazo_evento });
+      if (x.r.prova_data) ev.push({ d: parse(x.r.prova_data), x, prova: true, txt: 'Prova' });
+    }
+    if (!ev.length) return semDados(box, 'Nenhum concurso da sua seleção tem data marcada ainda.');
+    ev.sort((a, b) => a.d - b.d || a.x.r.rotulo.localeCompare(b.x.r.rotulo, 'pt'));
+    const ini = d3.utcDay.offset(d3.min([hoje, ev[0].d]), -6);
+    const fim = d3.utcDay.offset(d3.max([hoje, ev[ev.length - 1].d]), 8);
+    const W = Math.max(300, box.clientWidth || 520);
+    const svg = d3.select(box).append('svg').attr('role', 'img').attr('aria-label', 'Linha do tempo dos prazos');
+    const m = medidor(svg);
+    const meses = d3.utcMonth.range(d3.utcMonth.ceil(ini), fim);
+    const eixoW = Math.max(m.w('hoje', 't-eixo'), d3.max(meses, (t) => m.w(fmtMes(t), 't-eixo')) || 30);
+    const xPonto = eixoW + 18, xTexto = xPonto + 28;
+    const textoW = d3.max(ev, (e) => Math.max(m.w(fmtDia(e.d) + ' · ' + e.x.r.rotulo, 't-data'), m.w(e.txt, 't-ev')));
+    m.fim();
+    const H0 = Math.max(320, ev.length * 42 + 40);
+    const y = d3.scaleUtc([ini, fim], [18, H0 - 18]);
+    let ult = -Infinity;
+    for (const e of ev) { e.y = y(e.d); e.ly = Math.max(e.y, ult + 38); ult = e.ly; }
+    const H = Math.max(H0, ult + 28);
+    const vbW = Math.max(W, xTexto + textoW + 8);
+    svg.attr('width', vbW).attr('height', H).attr('viewBox', `0 0 ${vbW} ${H}`);
+    if (vbW <= W) svg.attr('width', '100%').attr('height', null);
+    svg.append('line').attr('x1', xPonto).attr('x2', xPonto).attr('y1', y(ini)).attr('y2', Math.max(y(fim), ult)).style('stroke', 'var(--line)').attr('stroke-width', 1.5);
+    const yh = y(hoje);
+    for (const t of meses) {
+      svg.append('line').attr('x1', xPonto - 5).attr('x2', xPonto).attr('y1', y(t)).attr('y2', y(t)).style('stroke', 'var(--muted)');
+      if (Math.abs(y(t) - yh) >= 16) svg.append('text').attr('class', 't-eixo').attr('x', xPonto - 9).attr('y', y(t)).attr('dy', '0.35em').attr('text-anchor', 'end').text(fmtMes(t));
+    }
+    svg.append('line').attr('x1', xPonto - 5).attr('x2', xTexto - 10).attr('y1', yh).attr('y2', yh).style('stroke', 'var(--accent)').attr('stroke-dasharray', '4 4').attr('stroke-width', 1.5);
+    svg.append('text').attr('class', 't-eixo').attr('x', xPonto - 9).attr('y', yh).attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', 'var(--accent)').text('hoje');
+    const tip = criarTip(box);
+    for (const e of ev) {
+      const g = svg.append('g');
+      if (Math.abs(e.ly - e.y) > 1) {
+        g.append('path').attr('d', `M${xPonto + 6},${e.y} C${xPonto + 18},${e.y} ${xTexto - 16},${e.ly} ${xTexto - 6},${e.ly}`).attr('fill', 'none').style('stroke', 'var(--line)');
+      }
+      const cor = COR[e.x.a.st];
+      g.append('circle').attr('cx', xPonto).attr('cy', e.y).attr('r', 5).style('fill', e.prova ? 'var(--surface)' : cor).style('stroke', cor).attr('stroke-width', 2);
+      g.append('text').attr('class', 't-data').attr('x', xTexto).attr('y', e.ly - 3).text(fmtDia(e.d) + ' · ' + e.x.r.rotulo);
+      g.append('text').attr('class', 't-ev').attr('x', xTexto).attr('y', e.ly + 13).text(e.txt);
+      g.append('rect').attr('x', xPonto - 8).attr('y', e.ly - 18).attr('width', vbW - xPonto).attr('height', 36).style('fill', 'transparent')
+        .on('pointermove', (evt) => tip.show(evt, e.x)).on('pointerleave', () => tip.hide());
+    }
+  }
+
+  /* ---------- salários ---------- */
+  function desenharSalarios(visiveis) {
+    const box = document.getElementById('g-salarios');
+    box.replaceChildren();
+    const rows = visiveis.filter((x) => x.r.salario != null).sort((a, b) => b.r.salario - a.r.salario);
+    if (!rows.length) return semDados(box, 'Nenhum cargo da sua seleção tem salário confirmado.');
+    const W = Math.max(300, box.clientWidth || 560);
+    const svg = d3.select(box).append('svg').attr('role', 'img').attr('aria-label', 'Salário por cargo');
+    const m = medidor(svg);
+    const labelW = d3.max(rows, (x) => m.w(x.r.rotulo, 't-folha')) + 10;
+    const valW = d3.max(rows, (x) => m.w(salCurto(x.r), 't-val')) + 10;
+    m.fim();
+    const plotW = Math.max(110, W - labelW - valW);
+    const vbW = labelW + plotW + valW;
+    const topo = 26, rowH = 22, barH = 12;
+    const H = topo + rows.length * rowH + 4;
+    svg.attr('width', vbW).attr('height', H).attr('viewBox', `0 0 ${vbW} ${H}`);
+    if (vbW <= W) svg.attr('width', '100%').attr('height', null);
+    const x = d3.scaleLinear([0, d3.max(rows, (d) => d.r.salario)], [0, plotW]);
+    for (const t of x.ticks(Math.max(2, Math.floor(plotW / 90)))) {
+      svg.append('line').attr('x1', labelW + x(t)).attr('x2', labelW + x(t)).attr('y1', topo - 6).attr('y2', H).style('stroke', 'var(--line)');
+      svg.append('text').attr('class', 't-eixo').attr('x', labelW + x(t)).attr('y', topo - 10).attr('text-anchor', 'middle').text(t === 0 ? '0' : mil(t).replace('R$ ', ''));
+    }
+    const tip = criarTip(box);
+    rows.forEach((d, i) => {
+      const yy = topo + i * rowH;
+      const g = svg.append('g');
+      g.append('text').attr('class', 't-folha' + (d.a.st === 'nao' ? ' nao' : '')).attr('x', labelW - 8).attr('y', yy + rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text(d.r.rotulo);
+      g.append('rect').attr('x', labelW).attr('y', yy + (rowH - barH) / 2).attr('width', Math.max(1, x(d.r.salario))).attr('height', barH).attr('rx', 2)
+        .style('fill', COR[d.a.st]).style('opacity', d.r.salario_tipo === 'inicial' ? 1 : 0.45);
+      g.append('text').attr('class', 't-val').attr('x', labelW + x(d.r.salario) + 6).attr('y', yy + rowH / 2).attr('dy', '0.35em').text(salCurto(d.r));
+      g.append('rect').attr('x', 0).attr('y', yy).attr('width', vbW).attr('height', rowH).style('fill', 'transparent')
+        .on('pointermove', (evt) => tip.show(evt, d)).on('pointerleave', () => tip.hide());
+    });
+  }
+
+  /* ---------- ciclo de desenho ---------- */
+  function desenhar() {
+    const { base, visiveis } = filtrar();
+    desenharResumo(base);
+    document.getElementById('aviso-exemplo').hidden = !exemploAtivo;
+    if (abaAtiva === 'lista') desenharLista(visiveis, base);
+    if (abaAtiva === 'mapa') desenharMapa(visiveis);
+    if (abaAtiva === 'prazos') desenharPrazos(visiveis);
+    if (abaAtiva === 'salarios') desenharSalarios(visiveis);
+  }
+
+  function preencherFicha() {
+    document.querySelectorAll('input[name="esc"]').forEach((i) => { i.checked = i.value === perfil.esc; });
+    document.querySelectorAll('input[name="sal"]').forEach((i) => { i.checked = Number(i.value) === Number(perfil.sal); });
+    document.querySelectorAll('input[name="mostrar"]').forEach((i) => { i.checked = i.value === perfil.mostrar; });
+    const superior = NIVEL[perfil.esc] === 2;
+    const curso = document.getElementById('f-curso');
+    curso.disabled = !superior;
+    curso.value = superior ? perfil.curso : '';
+    document.getElementById('dica-curso').textContent = superior ? 'Usado para conferir os cargos que pedem um curso específico.' : 'Só para quem tem curso superior.';
+    document.getElementById('f-area').value = perfil.area;
+    document.getElementById('f-uf').value = perfil.uf;
+  }
+
+  function salvar() {
+    exemploAtivo = false;
+    try { localStorage.setItem(CHAVE, JSON.stringify(perfil)); } catch (e) { /* sem armazenamento */ }
+  }
+
+  document.getElementById('ficha').addEventListener('submit', (e) => e.preventDefault());
+  document.getElementById('ficha').addEventListener('change', (e) => {
+    const t = e.target;
+    if (t.name === 'esc') { perfil.esc = t.value; if (NIVEL[perfil.esc] !== 2) perfil.curso = ''; }
+    else if (t.name === 'sal') perfil.sal = Number(t.value);
+    else if (t.name === 'mostrar') perfil.mostrar = t.value;
+    else if (t.id === 'f-curso') perfil.curso = t.value;
+    else if (t.id === 'f-area') perfil.area = t.value;
+    else if (t.id === 'f-uf') perfil.uf = t.value;
+    salvar();
+    preencherFicha();
+    desenhar();
+  });
+  const limpar = () => {
+    perfil = { ...VAZIO };
+    salvar();
+    document.getElementById('f-busca').value = '';
+    preencherFicha();
+    desenhar();
+  };
+  document.getElementById('limpar').addEventListener('click', limpar);
+  document.getElementById('limpar-2').addEventListener('click', limpar);
+  document.getElementById('f-busca').addEventListener('input', desenhar);
+  document.getElementById('f-ordem').addEventListener('change', desenhar);
+
+  const abas = Array.from(document.querySelectorAll('.aba'));
+  function abrirAba(nome) {
+    abaAtiva = nome;
+    abas.forEach((b) => {
+      const ativo = b.id === 'aba-' + nome;
+      b.setAttribute('aria-selected', String(ativo));
+      b.tabIndex = ativo ? 0 : -1;
+      document.getElementById(b.getAttribute('aria-controls')).hidden = !ativo;
+    });
+    desenhar();
+  }
+  abas.forEach((b, i) => {
+    b.addEventListener('click', () => abrirAba(b.id.replace('aba-', '')));
+    b.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const prox = abas[(i + (e.key === 'ArrowRight' ? 1 : abas.length - 1)) % abas.length];
+      prox.focus();
+      abrirAba(prox.id.replace('aba-', ''));
+    });
+  });
+
+  let largura = 0;
+  const ro = new ResizeObserver((ents) => {
+    const w = Math.round(ents[0].contentRect.width);
+    if (w !== largura) { largura = w; if (abaAtiva !== 'lista') requestAnimationFrame(desenhar); }
+  });
+  ro.observe(document.getElementById('resultado'));
+
+  function mostrarMudancas() {
+    const box = document.getElementById('mudou');
+    const lista = document.getElementById('mudou-lista');
+    const limite = d3.utcDay.offset(hoje, -7);
+    const recentes = (META.mudancas || [])
+      .filter((m) => m.data && parse(m.data) >= limite)
+      .sort((a, b) => (a.data < b.data ? 1 : -1))
+      .slice(0, 8);
+    lista.replaceChildren(...recentes.map((m) => {
+      const li = el('li');
+      li.append(el('span', null, fmtDia(parse(m.data)) + ' · '), document.createTextNode(m.texto));
+      return li;
+    }));
+    box.hidden = !recentes.length;
+  }
+
+  async function carregar() {
+    const cards = document.getElementById('cards');
+    cards.replaceChildren(el('div', 'vazio', 'Carregando concursos…'));
+    try {
+      const resp = await fetch('dados/concursos.json', { cache: 'no-store' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const j = await resp.json();
+      if (!Array.isArray(j.concursos)) throw new Error('formato inesperado');
+      META = j;
+      DADOS = j.concursos;
+    } catch (e) {
+      document.getElementById('carimbo').textContent = 'Não foi possível carregar a base agora.';
+      document.getElementById('rodape-base').textContent = 'Base indisponível no momento';
+      cards.replaceChildren(el('div', 'vazio', 'Não foi possível carregar a lista de concursos. Recarregue a página em instantes.'));
+      return;
+    }
+    const selArea = document.getElementById('f-area');
+    Array.from(new Set(DADOS.map((r) => r.area))).sort((a, b) => a.localeCompare(b, 'pt')).forEach((a) => selArea.append(new Option(a, a)));
+    const orgaos = new Set(DADOS.map((r) => r.orgao)).size;
+    const quando = fmtDia(parse(META.atualizado_em));
+    document.getElementById('carimbo').textContent = 'Atualizado em ' + quando + ' · ' + DADOS.length + ' cargos de ' + orgaos + ' órgãos. Confira sempre o edital oficial.';
+    document.getElementById('rodape-base').textContent = 'Base atualizada em ' + quando;
+    document.getElementById('sobre-base').textContent = 'Base atualizada em ' + quando + ', com ' + DADOS.length + ' cargos de ' + orgaos + ' órgãos.';
+    mostrarMudancas();
+    preencherFicha();
+    abrirAba('lista');
+  }
+
+  document.querySelectorAll('[data-abrir]').forEach((b) => b.addEventListener('click', () => {
+    const d = document.getElementById(b.dataset.abrir);
+    if (!d) return;
+    if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+  }));
+  document.querySelectorAll('dialog').forEach((d) => {
+    const fechar = () => (typeof d.close === 'function' ? d.close() : d.removeAttribute('open'));
+    d.querySelectorAll('[data-fechar]').forEach((b) => b.addEventListener('click', fechar));
+    d.addEventListener('click', (e) => { if (e.target === d) fechar(); });
+  });
+
+  window.radarAvaliar = avaliar;
+  carregar();
+})();
+</script>
+</body>
+</html>

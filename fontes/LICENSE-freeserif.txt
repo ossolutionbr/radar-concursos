@@ -1,0 +1,4 @@
+As letras "OS" da marca usam um recorte da fonte FreeSerif (GNU FreeFont),
+distribuída sob a GNU General Public License v3 com a exceção de fontes
+(font exception), que permite embutir a fonte em documentos e páginas.
+https://www.gnu.org/software/freefont/
