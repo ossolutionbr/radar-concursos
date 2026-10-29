@@ -135,6 +135,8 @@ select:disabled { opacity: 0.55; }
   .resumo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .resumo > div:nth-child(3) { border-left: 0; }
   .resumo > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .r-num { font-size: 1.5rem; }
+  #k-top { font-size: 1.2rem; }
 }
 .r-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .r-num { font-family: var(--f-display); font-weight: 700; font-size: 1.9rem; line-height: 1.05; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
@@ -151,6 +153,14 @@ select:disabled { opacity: 0.55; }
 .lista-ctrl input { flex: 1 1 14rem; width: auto; }
 .lista-ctrl select { flex: 0 1 16rem; width: auto; }
 .contagem { font-size: var(--step--1); color: var(--muted); margin: 0 0 0.75rem; }
+.btn-pdf { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; flex: 0 0 auto; }
+.btn-pdf svg { width: 1rem; height: 1rem; flex: none; }
+.btn:disabled { opacity: 0.55; cursor: progress; }
+.pdf-status { font-weight: 600; min-height: 1.4em; }
+.pdf-formato { margin: 0.25rem 0 0.75rem; }
+.pdf-formato .chip span { white-space: normal; }
+.pdf-acoes { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.25rem 0 0.9rem; }
+@media (max-width: 640px) { .btn-pdf { flex: 1 1 100%; } }
 
 /* cartões */
 .cards { display: grid; gap: 0.75rem; }
@@ -412,6 +422,10 @@ img { max-width: 100%; }
             <option value="prazo">Ordenar: prazo mais próximo</option>
             <option value="nome">Ordenar: nome do órgão</option>
           </select>
+          <button type="button" class="btn btn-pdf" id="btn-pdf" title="Relatório com o seu perfil e os concursos desta lista">
+            <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2.5h6.5L15 6v11.5H5z"/><path d="M11.5 2.5V6H15"/><path d="M10 9v5.5M7.6 12.2 10 14.6l2.4-2.4"/></svg>
+            Gerar PDF
+          </button>
         </div>
         <p class="contagem" id="contagem"></p>
         <div class="cards" id="cards"></div>
@@ -457,7 +471,7 @@ img { max-width: 100%; }
       <button type="button" class="btn-link" data-abrir="dlg-termos">Termos de uso</button>
       <button type="button" class="btn-link" data-abrir="dlg-privacidade">Privacidade</button>
       <button type="button" class="btn-link" data-abrir="dlg-sobre">Sobre</button>
-      <span>versão 1.0</span>
+      <span>versão 1.1</span>
     </nav>
     <span class="dir">Desenvolvido por <span class="marca" aria-label="OS Solution"><span class="os">OS</span><span class="barra"></span><span class="sol">SOLUTION</span></span></span>
   </div>
@@ -484,6 +498,8 @@ img { max-width: 100%; }
       <dd>Inicial bruto. Quando o órgão divulga só uma faixa, o filtro usa o valor mais alto e o cartão avisa que é uma faixa.</dd>
       <dt>Atualização</dt>
       <dd>De segunda a sexta, a base é revisada com notícias e editais (Diário Oficial, sites dos órgãos e das bancas, Folha Dirigida, Gran Cursos, Estratégia e outros), com inclusão de concursos novos e saída dos encerrados. Cada cartão mostra a fonte e quando foi verificado, e um aviso aparece quando a informação passa de dez dias sem confirmação.</dd>
+      <dt>Relatório em PDF</dt>
+      <dd>O botão "Gerar PDF", na lista, monta um relatório com o seu perfil, o resumo, os próximos prazos e os concursos que estão na tela, na mesma ordem e com a fonte de cada um. Dá para baixar ou, no celular, enviar direto pelo WhatsApp. O PDF mostra a situação do dia em que foi gerado.</dd>
       <dt>Importante</dt>
       <dd>O radar é uma ferramenta de consulta. Ele não substitui o edital oficial, que é sempre o que vale, nem é ligado a órgãos públicos ou bancas.</dd>
     </dl>
@@ -520,15 +536,37 @@ img { max-width: 100%; }
   <div class="dlg-c">
     <p>O radar não pede cadastro, nome, e-mail nem documento, e não usa cookies, rastreadores ou ferramentas de análise de visitas.</p>
     <p>O perfil que você preenche (escolaridade, curso, salário, área e estado) fica guardado só neste navegador, para você não precisar preencher de novo. Ele não é enviado para nenhum lugar e a OS Solution não tem acesso a ele. Para apagar, use "Limpar" ou limpe os dados do site no navegador.</p>
+    <p>O relatório em PDF é montado no seu próprio aparelho, com os dados que já estão na tela, e não é enviado para nenhum lugar.</p>
     <p>Fontes e gráficos ficam no próprio site; nada é carregado de outros serviços. O serviço de hospedagem registra o endereço de acesso (IP) do aparelho, como acontece em qualquer site, para funcionar e por segurança. Os links de fonte e de produtos abrem outros sites, com regras próprias.</p>
     <p>Dúvidas sobre privacidade: oscapitaloficial@gmail.com.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-pdf" aria-labelledby="dlg-pdf-t">
+  <div class="dlg-h"><h2 id="dlg-pdf-t">Relatório em PDF</h2><button type="button" class="btn" data-fechar>Fechar</button></div>
+  <div class="dlg-c">
+    <p id="pdf-resumo">O relatório traz o seu perfil, o resumo, os próximos prazos e os concursos que estão na lista agora.</p>
+    <fieldset class="campo pdf-formato">
+      <legend>Formato</legend>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="pdf-formato" value="completo" checked><span>Completo, com detalhes</span></label>
+        <label class="chip"><input type="radio" name="pdf-formato" value="resumo"><span>Resumo em tabela</span></label>
+      </div>
+    </fieldset>
+    <p class="pdf-status" id="pdf-status" role="status"></p>
+    <div class="pdf-acoes">
+      <button type="button" class="btn btn-cta" id="pdf-baixar" disabled>Baixar PDF</button>
+      <button type="button" class="btn" id="pdf-compartilhar" hidden disabled>Compartilhar</button>
+    </div>
+    <p class="dica" id="pdf-app" hidden>Abriu pelo Instagram ou pelo Facebook? Se o PDF não baixar, toque nos três pontinhos e escolha "Abrir no navegador".</p>
+    <p class="dica">O PDF é montado aqui no seu aparelho, e nada é enviado. Ele mostra a situação de hoje; para ver as novidades, volte ao radar.</p>
   </div>
 </dialog>
 
 <dialog id="dlg-sobre" aria-labelledby="dlg-sobre-t">
   <div class="dlg-h"><h2 id="dlg-sobre-t">Sobre</h2><button type="button" class="btn" data-fechar>Fechar</button></div>
   <div class="dlg-c">
-    <p><b>Radar de Concursos 2027</b>, versão 1.0.</p>
+    <p><b>Radar de Concursos 2027</b>, versão 1.1.</p>
     <p>Reúne uma seleção dos principais concursos públicos previstos, autorizados e abertos no Brasil e mostra, para cada perfil, onde é possível se inscrever.</p>
     <p id="sobre-base">Base de concursos carregando…</p>
     <p>Desenvolvido por <span class="marca" aria-label="OS Solution"><span class="os">OS</span><span class="barra"></span><span class="sol">SOLUTION</span></span></p>
@@ -663,7 +701,7 @@ img { max-width: 100%; }
     document.getElementById('k-pode-sub').textContent = temPerfil ? 'de ' + base.length + ' na sua seleção' : 'informe a escolaridade';
     document.getElementById('k-dep').textContent = temPerfil ? dep.length : '—';
     const top = pode.filter((x) => x.r.salario != null && x.r.salario_tipo === 'inicial').sort((a, b) => b.r.salario - a.r.salario)[0];
-    document.getElementById('k-top').textContent = top ? top.r.salario_txt.replace(/\s*\(.*\)$/, '') : '—';
+    document.getElementById('k-top').textContent = top ? top.r.salario_txt.replace(/\s*\(.*\)$/, '').replace(/^R\$\s+/, 'R$\u00a0') : '—';
     document.getElementById('k-top-sub').textContent = top ? top.r.rotulo : (temPerfil ? 'nenhum cargo com inicial conhecido' : 'informe a escolaridade');
     const abertas = base.filter((x) => x.r.etapa === 6 && (!temPerfil || x.a.st !== 'nao'));
     document.getElementById('k-abertas').textContent = abertas.length;
@@ -1052,6 +1090,519 @@ img { max-width: 100%; }
     const fechar = () => (typeof d.close === 'function' ? d.close() : d.removeAttribute('open'));
     d.querySelectorAll('[data-fechar]').forEach((b) => b.addEventListener('click', fechar));
     d.addEventListener('click', (e) => { if (e.target === d) fechar(); });
+  });
+
+  /* ---------- relatório em PDF (montado no aparelho, nada é enviado) ---------- */
+  const SITE = 'https://ossolutionbr.github.io/radar-concursos/';
+  const SITE_CURTO = SITE.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  const QR = ["111111100111010011111011001111111", "100000100101111111000010101000001", "101110101100010101111110001011101", "101110101100101010011011101011101", "101110101111010100100111001011101", "100000101000011111001110001000001", "111111101010101010101010101111111", "000000001000101100000111100000000", "101111100101010101000010101111100", "100001000011000010110111001101101", "110111110110000100100000011010110", "111110001100101010010111011011110", "111110100011100000100001010111000", "011101010011011111001101001001111", "011101111100111000110110111010110", "100100000100010010011101111101100", "011111110100001001011010110110001", "100001010001001001011001001101101", "111101111111000101000010011110110", "100110001010001001110111101111101", "100111111110111110001100010111000", "100101000110100100100001001000101", "101111110101110110001100011001110", "101111011001010100100110011011111", "101101100000011101000010111111011", "000000001110110010111101100010111", "111111100010000110100101101010110", "100000101011111110011101100011111", "101110101101011100110100111111011", "101110101111000111001001010010101", "101110101111110000110010111100000", "100000100110000010111111000010100", "111111101000011011010011111100010"];
+  const ESC_TXT = { fundamental: 'Fundamental', medio: 'Médio ou técnico', tecnologo: 'Tecnólogo', bacharelado: 'Bacharelado', licenciatura: 'Licenciatura' };
+  const MOSTRAR_TXT = { pode: 'só onde posso concorrer', pode_dep: 'onde posso ou depende do edital', todos: 'todos os cargos da seleção' };
+  const PDF_FONTES = [
+    ['fontes/pdf/public-sans-400.ttf', 'PublicSans', 'normal'],
+    ['fontes/pdf/public-sans-700.ttf', 'PublicSans', 'bold'],
+    ['fontes/pdf/public-sans-600.ttf', 'PublicSansSemi', 'normal'],
+    ['fontes/pdf/josefin-slab-400.ttf', 'Josefin', 'normal'],
+    ['fontes/pdf/josefin-slab-700.ttf', 'Josefin', 'bold'],
+    ['fontes/os-serif.ttf', 'OSSerif', 'normal'],
+  ];
+  const RGB = {
+    fg: [26, 28, 30], muted: [91, 97, 103], line: [226, 221, 211], paper: [246, 244, 239], white: [255, 255, 255],
+    accent: [31, 58, 104], accentSoft: [230, 234, 242], gold: [184, 134, 11], goldInk: [122, 88, 0], goldSoft: [247, 238, 214],
+    ok: [46, 125, 79], okSoft: [227, 239, 231], warn: [154, 107, 0], warnSoft: [247, 238, 214], no: [104, 109, 115], noSoft: [238, 235, 228],
+    alert: [163, 53, 43], alertSoft: [247, 228, 225], sol: [58, 63, 68],
+  };
+  const ST_RGB = { pode: [RGB.ok, RGB.okSoft], dep: [RGB.warn, RGB.warnSoft], nao: [RGB.no, RGB.noSoft], sem: [RGB.accent, RGB.accentSoft] };
+  const TROCA_PDF = { '≈': '~', '→': '->', '←': '<-', '≥': '>=', '≤': '<=', '⋯': '...' };
+  // as fontes do PDF cobrem o alfabeto latino e a pontuação comum; o resto vira equivalente simples
+  const pdfTxt = (s) => String(s ?? '').replace(/[^\u0000-ÿ -⁯€™−]/g, (c) => TROCA_PDF[c] ?? '');
+
+  let jsPDFPronto = null;
+  function carregarJsPDF() {
+    if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve(window.jspdf.jsPDF);
+    if (!jsPDFPronto) {
+      jsPDFPronto = new Promise((ok, erro) => {
+        const s = document.createElement('script');
+        s.src = 'vendor/jspdf.umd.min.js';
+        s.onload = () => (window.jspdf && window.jspdf.jsPDF ? ok(window.jspdf.jsPDF) : erro(new Error('jsPDF indisponível')));
+        s.onerror = () => { jsPDFPronto = null; erro(new Error('falha ao carregar o gerador de PDF')); };
+        document.head.append(s);
+      });
+    }
+    return jsPDFPronto;
+  }
+  const fontesCache = {};
+  async function fonteB64(url) {
+    if (fontesCache[url]) return fontesCache[url];
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error('fonte ' + url + ': HTTP ' + resp.status);
+    const bytes = new Uint8Array(await resp.arrayBuffer());
+    let bin = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    fontesCache[url] = btoa(bin);
+    return fontesCache[url];
+  }
+  async function iconePNG() {
+    try {
+      let xml = new XMLSerializer().serializeToString(document.querySelector('.produto svg'));
+      if (!/xmlns=/.test(xml)) xml = xml.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+      xml = xml.replace('<svg', '<svg width="176" height="176"');
+      const img = new Image();
+      await new Promise((ok, erro) => { img.onload = ok; img.onerror = erro; img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(xml); });
+      const c = document.createElement('canvas');
+      c.width = 176; c.height = 176;
+      c.getContext('2d').drawImage(img, 0, 0, 176, 176);
+      return c.toDataURL('image/png');
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function montarPDF(formato) {
+    const [jsPDF, b64s, icone] = await Promise.all([carregarJsPDF(), Promise.all(PDF_FONTES.map(([u]) => fonteB64(u))), iconePNG()]);
+    const doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
+    PDF_FONTES.forEach(([u, fam, est], i) => { const nome = u.split('/').pop(); doc.addFileToVFS(nome, b64s[i]); doc.addFont(nome, fam, est); });
+    doc.setProperties({ title: 'Radar de Concursos - relatório do seu perfil', subject: 'Concursos públicos previstos e abertos', author: 'OS Solution', creator: 'Radar de Concursos (OS Solution)' });
+
+    const W = 210, M = 14, CW = W - 2 * M, LIMITE = 278;
+    const LH = (pt) => pt * 0.3528 * 1.3;
+    const dd = (n) => String(n).padStart(2, '0');
+    const agora = new Date();
+    const agoraTxt = dd(agora.getDate()) + '/' + dd(agora.getMonth() + 1) + '/' + agora.getFullYear() + ' às ' + dd(agora.getHours()) + 'h' + dd(agora.getMinutes());
+    const diaTxt = agoraTxt.slice(0, 10);
+    const baseTxt = META.atualizado_em ? fmtDia(parse(META.atualizado_em)) : '';
+    const f = (fam, est, pt, cor) => { doc.setFont(fam, est); doc.setFontSize(pt); if (cor) doc.setTextColor(...cor); };
+    const txt = (t, x, yy, o) => doc.text(t, x, yy, Object.assign({ baseline: 'top', lineHeightFactor: 1.3 }, o || {}));
+    const larg = (t) => doc.getTextWidth(t);
+    const opt = (id) => { const s = document.getElementById(id); return s && s.selectedOptions[0] ? s.selectedOptions[0].textContent.trim() : ''; };
+    const ordemTxt = opt('f-ordem').replace(/^Ordenar:\s*/, '');
+    let y = M;
+
+    function cabecalhoSeguinte() {
+      f('Josefin', 'bold', 10.5, RGB.accent);
+      txt('Radar de Concursos', M, 10);
+      const w = larg('Radar de Concursos');
+      f('PublicSans', 'normal', 7.5, RGB.muted);
+      txt('·  relatório de ' + diaTxt, M + w + 2, 10.9);
+      doc.setDrawColor(...RGB.line); doc.setLineWidth(0.3); doc.line(M, 16.5, W - M, 16.5);
+      y = 21;
+    }
+    function garantir(h) { if (y + h > LIMITE) { doc.addPage(); cabecalhoSeguinte(); } }
+    function pilula(t, x, yy, cor, fundo, pt) {
+      f('PublicSans', 'bold', pt || 6.8, cor);
+      const w = larg(t) + 3.2;
+      doc.setFillColor(...fundo); doc.roundedRect(x, yy, w, 4.4, 2.2, 2.2, 'F');
+      txt(t, x + 1.6, yy + 1.05);
+      return w;
+    }
+    function quebrar(texto, w1, w) {
+      const out = []; let atual = ''; let lim = w1;
+      for (const p of pdfTxt(texto).split(/\s+/).filter(Boolean)) {
+        const tent = atual ? atual + ' ' + p : p;
+        if (!atual || larg(tent) <= lim) atual = tent;
+        else { out.push(atual); atual = p; lim = w; }
+      }
+      if (atual) out.push(atual);
+      return out;
+    }
+    function titulo(t, sub, depois) {
+      f('PublicSans', 'normal', 7.8);
+      const ls = sub ? doc.splitTextToSize(pdfTxt(sub), CW) : [];
+      garantir(9.4 + ls.length * LH(7.8) + (depois || 30));
+      f('Josefin', 'bold', 13.5, RGB.fg); txt(pdfTxt(t), M, y);
+      y += 6.6;
+      if (ls.length) { f('PublicSans', 'normal', 7.8, RGB.muted); txt(ls, M, y); y += ls.length * LH(7.8); }
+      y += 2.8;
+    }
+    function desenharQR(x, yy, tam) {
+      const n = QR.length; const m = tam / n;
+      doc.setFillColor(...RGB.fg);
+      QR.forEach((linha, i) => {
+        let j = 0;
+        while (j < n) {
+          if (linha[j] !== '1') { j++; continue; }
+          let k = j;
+          while (k < n && linha[k] === '1') k++;
+          doc.rect(x + j * m, yy + i * m, (k - j) * m + 0.03, m + 0.03, 'F');
+          j = k;
+        }
+      });
+    }
+
+    /* cabeçalho da primeira página */
+    if (icone) doc.addImage(icone, 'PNG', M, y, 14, 14);
+    else { doc.setFillColor(...RGB.accent); doc.roundedRect(M, y, 14, 14, 3.5, 3.5, 'F'); }
+    f('Josefin', 'bold', 22, RGB.fg); txt('Radar de Concursos', M + 18, y + 0.4);
+    f('PublicSans', 'normal', 8.4, RGB.muted);
+    txt('Relatório do seu perfil · gerado em ' + agoraTxt, M + 18, y + 9.4);
+    txt('Seleção dos principais concursos previstos e abertos · confira sempre o edital oficial', M + 18, y + 13.4);
+    const qs = 21;
+    desenharQR(W - M - qs, y - 1, qs);
+    f('PublicSans', 'normal', 6.2, RGB.muted); txt('Versão atualizada', W - M - qs / 2, y + qs + 0.3, { align: 'center' });
+    y += 27;
+    doc.setDrawColor(...RGB.line); doc.setLineWidth(0.3); doc.line(M, y, W - M, y);
+    y += 5;
+
+    /* perfil */
+    const busca = document.getElementById('f-busca').value.trim();
+    const itens = [
+      ['Escolaridade', ESC_TXT[perfil.esc] || 'não informada'],
+      ['Curso', NIVEL[perfil.esc] === 2 ? (perfil.curso ? opt('f-curso') : 'não informado') : 'não se aplica'],
+      ['Salário inicial', perfil.sal ? 'a partir de ' + mil(perfil.sal) : 'qualquer valor'],
+      ['Área de interesse', perfil.area || 'todas as áreas'],
+      ['Onde quer trabalhar', perfil.uf ? opt('f-uf') + ' e concursos nacionais' : 'qualquer lugar'],
+      ['Mostrando', MOSTRAR_TXT[perfil.mostrar] || MOSTRAR_TXT.pode_dep],
+    ];
+    if (busca) itens.push(['Busca', '"' + busca + '"']);
+    itens.push(['Ordem', ordemTxt]);
+    const pad = 4, colW = (CW - 2 * pad - 6) / 2;
+    f('PublicSans', 'normal', 9);
+    const cels = itens.map(([k, v]) => ({ k, ls: doc.splitTextToSize(pdfTxt(v), colW) }));
+    const pares = [];
+    for (let i = 0; i < cels.length; i += 2) pares.push(cels.slice(i, i + 2));
+    const altCel = (c) => 3.3 + c.ls.length * LH(9);
+    const hPerfil = pad + 5.4 + pares.reduce((s, par) => s + Math.max(...par.map(altCel)) + 1.8, 0) - 1.8 + pad;
+    doc.setFillColor(...RGB.paper); doc.roundedRect(M, y, CW, hPerfil, 2.5, 2.5, 'F');
+    f('PublicSans', 'bold', 6.8, RGB.goldInk);
+    txt(exemploAtivo ? 'SEU PERFIL  ·  EXEMPLO: TROQUE PELOS SEUS DADOS NO RADAR' : 'SEU PERFIL', M + pad, y + pad, { charSpace: 0.2 });
+    let yy = y + pad + 5.4;
+    for (const par of pares) {
+      par.forEach((c, j) => {
+        const x = M + pad + j * (colW + 6);
+        f('PublicSansSemi', 'normal', 7, RGB.muted); txt(pdfTxt(c.k), x, yy);
+        f('PublicSans', 'normal', 9, RGB.fg); txt(c.ls, x, yy + 3.3);
+      });
+      yy += Math.max(...par.map(altCel)) + 1.8;
+    }
+    y += hPerfil + 5;
+
+    /* resumo (os mesmos números da tela) */
+    const kpis = [
+      ['Você pode concorrer', 'k-pode', 'k-pode-sub', RGB.ok],
+      ['Depende do edital', 'k-dep', null, RGB.warn],
+      ['Maior inicial para você', 'k-top', 'k-top-sub', RGB.fg],
+      ['Inscrições abertas', 'k-abertas', 'k-abertas-sub', RGB.fg],
+    ];
+    const kw = (CW - 3 * 3) / 4;
+    const kd = kpis.map(([rot, idN, idS, cor]) => {
+      const sub = idS ? document.getElementById(idS).textContent.trim() : 'cargo, especialidade ou requisito extra';
+      f('PublicSans', 'bold', 6.2); const rl = doc.splitTextToSize(pdfTxt(rot.toUpperCase()), kw - 6);
+      f('PublicSans', 'normal', 7); const ls = doc.splitTextToSize(pdfTxt(sub), kw - 6).slice(0, 3);
+      return { rl, num: pdfTxt(document.getElementById(idN).textContent.trim()), ls, cor };
+    });
+    const hRot = Math.max(...kd.map((k) => k.rl.length)) * LH(6.2);
+    const hK = 3.8 + hRot + 1.2 + 6.6 + Math.max(...kd.map((k) => k.ls.length)) * LH(7) + 3.2;
+    kd.forEach((k, i) => {
+      const x = M + i * (kw + 3);
+      doc.setDrawColor(...RGB.line); doc.setLineWidth(0.3); doc.setFillColor(...RGB.white);
+      doc.roundedRect(x, y, kw, hK, 2.5, 2.5, 'FD');
+      f('PublicSans', 'bold', 6.2, RGB.muted); txt(k.rl, x + 3, y + 3.8);
+      let pt = 16;
+      f('Josefin', 'bold', pt, k.cor);
+      while (larg(k.num) > kw - 6 && pt > 10) { pt -= 1; doc.setFontSize(pt); }
+      txt(k.num, x + 3, y + 3.8 + hRot + 1.2);
+      f('PublicSans', 'normal', 7, RGB.muted); txt(k.ls, x + 3, y + 3.8 + hRot + 1.2 + 6.6);
+    });
+    y += hK + 7;
+
+    /* próximos prazos */
+    const { base, visiveis } = filtrar();
+    const lista = ordenar(visiveis);
+    const ate = d3.utcDay.offset(hoje, 120);
+    const evs = [];
+    lista.forEach((x) => {
+      const p = x.r.prazo_data ? parse(x.r.prazo_data) : null;
+      const v = x.r.prova_data ? parse(x.r.prova_data) : null;
+      if (p && p >= hoje && p <= ate) evs.push({ d: p, ev: (x.r.prazo_evento || 'Prazo').replace(/\s*\(.*\)$/, ''), x });
+      if (v && v >= hoje && v <= ate) evs.push({ d: v, ev: 'Prova', x });
+    });
+    evs.sort((a, b) => a.d - b.d);
+    if (evs.length) {
+      titulo('Próximos prazos', 'Nos próximos quatro meses, entre os concursos desta lista. Confira as datas no edital.');
+      evs.slice(0, 10).forEach((e) => {
+        garantir(6);
+        const [cor, fundo] = ST_RGB[e.x.a.st];
+        f('PublicSans', 'bold', 6.6); const pw = larg(ROTULO_ST[e.x.a.st]) + 3.2;
+        f('PublicSans', 'bold', 8.6, RGB.fg); txt(fmtDia(e.d), M, y);
+        f('PublicSans', 'normal', 8.6, RGB.muted); txt(doc.splitTextToSize(pdfTxt(e.ev), 44)[0], M + 21, y);
+        f('PublicSans', 'normal', 8.6, RGB.fg); txt(doc.splitTextToSize(pdfTxt(e.x.r.rotulo), CW - 67 - pw - 3)[0], M + 67, y);
+        pilula(ROTULO_ST[e.x.a.st], W - M - pw, y - 0.7, cor, fundo, 6.6);
+        y += 5.6;
+        doc.setDrawColor(...RGB.line); doc.setLineWidth(0.2); doc.line(M, y - 1.4, W - M, y - 1.4);
+      });
+      y += 5;
+    }
+
+    /* cartões */
+    const fora = base.length - visiveis.length;
+    const sete = d3.utcDay.offset(hoje, -7);
+    const criado = parse(META.criado_em || '2026-10-29');
+    titulo('Concursos da sua seleção',
+      lista.length + (lista.length === 1 ? ' concurso' : ' concursos') + ', na ordem "' + ordemTxt + '".' +
+      (fora > 0 ? ' Outros ' + fora + ' ficaram de fora pelo filtro "Mostrar".' : ''), !lista.length ? 30 : formato === 'resumo' ? 22 : cartaoPDF(lista[0], false));
+    function tagsDe(r) {
+      const t = [];
+      if (r.etapa === 6) t.push(['Inscrições abertas', RGB.accent, RGB.accentSoft]);
+      const add = r.adicionado_em ? parse(r.adicionado_em) : null;
+      const novidade = (META.mudancas || []).some((m) => m.id === r.id && m.data && parse(m.data) >= sete);
+      if (add && add >= sete && add > criado) t.push(['Novo', RGB.goldInk, RGB.goldSoft]);
+      else if (novidade) t.push(['Atualizado', RGB.goldInk, RGB.goldSoft]);
+      const ver = r.verificado_em ? parse(r.verificado_em) : null;
+      if (ver) { const dias = d3.utcDay.count(ver, hoje); if (dias > DIAS_ALERTA) t.push(['Sem confirmação há ' + dias + ' dias', RGB.alert, RGB.alertSoft]); }
+      t.push([r.area, RGB.muted, RGB.noSoft]);
+      if (r.temporario) t.push(['Temporário', RGB.muted, RGB.noSoft]);
+      return t;
+    }
+    function cartaoPDF({ r, a }, desenhar) {
+      const [cor, fundo] = ST_RGB[a.st];
+      const ix = M + 6, iw = CW - 10;
+      let cy = y + 3.4;
+      // selos
+      let px = ix;
+      [[ROTULO_ST[a.st], cor, fundo], ...tagsDe(r)].forEach(([t, c, b]) => {
+        const tt = pdfTxt(t);
+        f('PublicSans', 'bold', 6.8); const w = larg(tt) + 3.2;
+        if (px > ix && px + w > ix + iw) { px = ix; cy += 5.4; }
+        if (desenhar) pilula(tt, px, cy, c, b);
+        px += w + 1.6;
+      });
+      cy += 4.4 + 2.2;
+      // órgão, cargo e salário
+      f('PublicSans', 'bold', 11); const salL = doc.splitTextToSize(pdfTxt(r.salario_txt || 'A confirmar'), 62);
+      const salW = Math.max(...salL.map(larg));
+      const salSub = r.salario == null ? 'salário a confirmar' : r.salario_tipo === 'inicial' ? 'inicial' : 'faixa salarial';
+      const tw = iw - salW - 6;
+      f('Josefin', 'bold', 12); const orgL = doc.splitTextToSize(pdfTxt(r.orgao), tw);
+      f('PublicSans', 'normal', 8.6); const cargoL = doc.splitTextToSize(pdfTxt(r.cargo), tw);
+      const hTit = orgL.length * LH(12) + 0.3 + cargoL.length * LH(8.6);
+      const hSal = salL.length * LH(11) + 0.4 + LH(6.8);
+      if (desenhar) {
+        f('Josefin', 'bold', 12, RGB.fg); txt(orgL, ix, cy);
+        f('PublicSans', 'normal', 8.6, RGB.muted); txt(cargoL, ix, cy + orgL.length * LH(12) + 0.3);
+        f('PublicSans', 'bold', 11, RGB.fg); txt(salL, ix + iw, cy + 0.3, { align: 'right' });
+        f('PublicSans', 'normal', 6.8, RGB.muted); txt(salSub, ix + iw, cy + 0.7 + salL.length * LH(11), { align: 'right' });
+      }
+      cy += Math.max(hTit, hSal) + 2.0;
+      // fase e banca
+      const segW = 5.2, segG = 0.8;
+      const fx = ix + 6 * (segW + segG) + 2.2;
+      f('PublicSans', 'bold', 8.4); const stT = pdfTxt(r.status); const stW = larg(stT);
+      f('PublicSans', 'normal', 8.4); const bancaT = pdfTxt(' · Banca: ' + r.banca);
+      const umaLinha = fx + stW + larg(bancaT) <= ix + iw;
+      const bancaL = umaLinha ? [] : doc.splitTextToSize(pdfTxt('Banca: ' + r.banca), ix + iw - fx);
+      if (desenhar) {
+        for (let i = 1; i <= 6; i++) {
+          doc.setFillColor(...(i > r.etapa ? RGB.line : r.etapa === 6 && i === 6 ? RGB.gold : RGB.accent));
+          doc.roundedRect(ix + (i - 1) * (segW + segG), cy + 1.05, segW, 1.5, 0.7, 0.7, 'F');
+        }
+        f('PublicSans', 'bold', 8.4, RGB.fg); txt(stT, fx, cy);
+        f('PublicSans', 'normal', 8.4, RGB.fg);
+        if (umaLinha) txt(bancaT, fx + stW, cy); else txt(bancaL, fx, cy + LH(8.4));
+      }
+      cy += (1 + bancaL.length) * LH(8.4) + 1.9;
+      // vagas, onde, próximo marco, formação
+      const mw = (iw - 3 * 4) / 4;
+      f('PublicSans', 'normal', 8);
+      const metas = [['Vagas', r.vagas_txt], ['Onde', r.local], ['Próximo marco', r.prazo_txt], ['Formação', r.formacao]]
+        .map(([k, v]) => [k, doc.splitTextToSize(pdfTxt(v || '—'), mw)]);
+      const hMeta = 3.0 + Math.max(...metas.map(([, ls]) => ls.length)) * LH(8);
+      if (desenhar) {
+        metas.forEach(([k, ls], i) => {
+          const mx = ix + i * (mw + 4);
+          f('PublicSans', 'bold', 6, RGB.muted); txt(pdfTxt(k.toUpperCase()), mx, cy, { charSpace: 0.15 });
+          f('PublicSans', 'normal', 8, RGB.fg); txt(ls, mx, cy + 3.0);
+        });
+      }
+      cy += hMeta + 1.9;
+      // por quê
+      f('PublicSans', 'bold', 8); const pq = 'Por quê: '; const pqW = larg(pq);
+      f('PublicSans', 'normal', 8); const motL = quebrar(a.motivo, iw - 6 - pqW, iw - 6);
+      const hMot = 1.9 + motL.length * LH(8) + 1.6;
+      if (desenhar) {
+        doc.setFillColor(...RGB.paper); doc.roundedRect(ix, cy, iw, hMot, 1.8, 1.8, 'F');
+        f('PublicSans', 'bold', 8, RGB.fg); txt(pq, ix + 3, cy + 1.9);
+        f('PublicSans', 'normal', 8, RGB.fg);
+        motL.forEach((l, i) => txt(l, ix + 3 + (i === 0 ? pqW : 0), cy + 1.9 + i * LH(8)));
+      }
+      cy += hMot + 1.8;
+      // observação e fonte
+      f('PublicSans', 'normal', 7.3);
+      const obsL = r.observacao ? doc.splitTextToSize(pdfTxt(r.observacao), iw) : [];
+      if (desenhar && obsL.length) { f('PublicSans', 'normal', 7.3, RGB.muted); txt(obsL, ix, cy); }
+      cy += obsL.length ? obsL.length * LH(7.3) + 0.6 : 0;
+      if (desenhar) {
+        f('PublicSans', 'normal', 7.3, RGB.muted); txt('Fonte: ', ix, cy);
+        const w0 = larg('Fonte: ');
+        const fn = pdfTxt(r.fonte_nome || 'link da notícia');
+        f('PublicSans', 'bold', 7.3, RGB.accent); txt(fn, ix + w0, cy);
+        const w1 = larg(fn);
+        if (/^https?:\/\//.test(r.fonte || '')) doc.link(ix + w0, cy - 0.4, w1, LH(7.3), { url: r.fonte });
+        doc.setDrawColor(...RGB.accent); doc.setLineWidth(0.15); doc.line(ix + w0, cy + 2.45, ix + w0 + w1, cy + 2.45);
+        const ver = r.verificado_em ? parse(r.verificado_em) : null;
+        if (ver) { f('PublicSans', 'normal', 7.3, RGB.muted); txt(' · verificado em ' + fmtDia(ver), ix + w0 + w1, cy); }
+      }
+      cy += LH(7.3) + 2.9;
+      return cy - y;
+    }
+    /* resumo: uma linha por concurso */
+    const COLS = [[M, 27], [M + 29, 58], [M + 89, 27], [M + 118, 30], [M + 150, 32]];
+    function cabecalhoTabela() {
+      f('PublicSans', 'bold', 6, RGB.muted);
+      ['SITUAÇÃO', 'ÓRGÃO E CARGO', 'SALÁRIO', 'FASE', 'PRÓXIMO MARCO'].forEach((t, i) => txt(t, COLS[i][0], y, { charSpace: 0.15 }));
+      y += 3.6;
+      doc.setDrawColor(...RGB.fg); doc.setLineWidth(0.3); doc.line(M, y, W - M, y);
+      y += 1.6;
+    }
+    function linhaTabela({ r, a }, desenhar) {
+      const [cor, fundo] = ST_RGB[a.st];
+      f('PublicSans', 'bold', 8.2); const orgL = doc.splitTextToSize(pdfTxt(r.orgao), COLS[1][1]);
+      f('PublicSans', 'normal', 7.4); const carL = doc.splitTextToSize(pdfTxt(r.cargo), COLS[1][1]);
+      f('PublicSans', 'bold', 8.2); const salL = doc.splitTextToSize(pdfTxt(r.salario_txt || 'A confirmar'), COLS[2][1]);
+      f('PublicSans', 'normal', 7.2); const fasL = doc.splitTextToSize(pdfTxt(ETAPAS[r.etapa - 1] + (r.etapa === 6 ? ' · inscrições' : '') + ' · ' + r.banca), COLS[3][1]);
+      f('PublicSans', 'normal', 7.4); const przL = doc.splitTextToSize(pdfTxt(r.prazo_txt || '—'), COLS[4][1]);
+      const h = Math.max(orgL.length * LH(8.2) + carL.length * LH(7.4), salL.length * LH(8.2), 3 + fasL.length * LH(7.2), przL.length * LH(7.4), 4.6) + 3.2;
+      if (desenhar) {
+        pilula(ROTULO_ST[a.st], COLS[0][0], y + 0.2, cor, fundo, 6.4);
+        f('PublicSans', 'bold', 8.2, RGB.fg); txt(orgL, COLS[1][0], y);
+        f('PublicSans', 'normal', 7.4, RGB.muted); txt(carL, COLS[1][0], y + orgL.length * LH(8.2));
+        f('PublicSans', 'bold', 8.2, RGB.fg); txt(salL, COLS[2][0], y);
+        for (let i = 1; i <= 6; i++) {
+          doc.setFillColor(...(i > r.etapa ? RGB.line : r.etapa === 6 && i === 6 ? RGB.gold : RGB.accent));
+          doc.roundedRect(COLS[3][0] + (i - 1) * 4.6, y + 0.6, 4, 1.3, 0.6, 0.6, 'F');
+        }
+        f('PublicSans', 'normal', 7.2, RGB.fg); txt(fasL, COLS[3][0], y + 3);
+        f('PublicSans', 'normal', 7.4, RGB.fg); txt(przL, COLS[4][0], y);
+        doc.setDrawColor(...RGB.line); doc.setLineWidth(0.2); doc.line(M, y + h - 1.6, W - M, y + h - 1.6);
+      }
+      return h;
+    }
+
+    if (formato === 'resumo') {
+      garantir(12);
+      cabecalhoTabela();
+      lista.forEach((x) => {
+        const h = linhaTabela(x, false);
+        if (y + h > LIMITE) { doc.addPage(); cabecalhoSeguinte(); cabecalhoTabela(); }
+        linhaTabela(x, true);
+        y += h;
+      });
+      f('PublicSans', 'normal', 7.2, RGB.muted);
+      y += 1;
+      garantir(5);
+      txt('Fonte, vagas, formação exigida e o motivo de cada indicação estão no radar e no PDF completo.', M, y);
+      y += 5;
+    } else {
+      lista.forEach((x) => {
+        const h = cartaoPDF(x, false);
+        garantir(h);
+        cartaoPDF(x, true);
+        doc.setDrawColor(...RGB.line); doc.setLineWidth(0.3); doc.roundedRect(M, y, CW, h, 2.5, 2.5, 'S');
+        doc.setFillColor(...ST_RGB[x.a.st][0]); doc.roundedRect(M + 2, y + 3.5, 1.3, h - 7, 0.65, 0.65, 'F');
+        y += h + 2.6;
+      });
+    }
+
+    /* sobre este relatório */
+    const sobre = 'Relatório gerado em ' + agoraTxt + (baseTxt ? ', com a base de concursos atualizada em ' + baseTxt : '') +
+      '. As informações vêm de editais, publicações oficiais e notícias e podem ter mudado depois desta data. ' +
+      'O radar reúne uma seleção dos principais concursos e não cobre todos os concursos do país. ' +
+      'A indicação "pode concorrer" é uma estimativa feita a partir das regras publicadas e do perfil informado: ' +
+      'confira requisitos, datas e valores no edital oficial antes de se inscrever. ' +
+      'Ferramenta gratuita, sem vínculo com órgãos públicos ou bancas. Versão atualizada: ' + SITE_CURTO + '.';
+    f('PublicSans', 'normal', 7.6);
+    const sL = doc.splitTextToSize(pdfTxt(sobre), CW - 8);
+    const hS = 4 + 4.6 + sL.length * LH(7.6) + 3.4;
+    y += 2;
+    garantir(hS);
+    doc.setFillColor(...RGB.paper); doc.roundedRect(M, y, CW, hS, 2.5, 2.5, 'F');
+    f('PublicSans', 'bold', 8, RGB.fg); txt('Sobre este relatório', M + 4, y + 4);
+    f('PublicSans', 'normal', 7.6, RGB.muted); txt(sL, M + 4, y + 8.6);
+
+    /* rodapé de todas as páginas */
+    const n = doc.getNumberOfPages();
+    for (let i = 1; i <= n; i++) {
+      doc.setPage(i);
+      const fy = 287.5;
+      const mid = { baseline: 'middle' };
+      doc.setDrawColor(...RGB.line); doc.setLineWidth(0.3); doc.line(M, fy - 4, W - M, fy - 4);
+      f('PublicSans', 'normal', 6.8, RGB.muted);
+      txt(SITE_CURTO, M, fy, mid);
+      doc.link(M, fy - 1.5, larg(SITE_CURTO), 3, { url: SITE });
+      txt('Página ' + i + ' de ' + n, W / 2, fy, Object.assign({ align: 'center' }, mid));
+      const wD = larg('Desenvolvido por');
+      f('OSSerif', 'normal', 9.5); const wOS = larg('OS');
+      f('Josefin', 'normal', 7.8); const wSol = larg('SOLUTION') + 0.35 * 8;
+      let mx = W - M - (wD + 2 + wOS + 1.5 + 0.5 + 1.5 + wSol);
+      f('PublicSans', 'normal', 6.8, RGB.muted); txt('Desenvolvido por', mx, fy, mid); mx += wD + 2;
+      f('OSSerif', 'normal', 9.5, RGB.fg); txt('OS', mx, fy, mid); mx += wOS + 1.5;
+      doc.setFillColor(...RGB.gold); doc.rect(mx, fy - 1.6, 0.5, 3.2, 'F'); mx += 0.5 + 1.5;
+      f('Josefin', 'normal', 7.8, RGB.sol); txt('SOLUTION', mx, fy + 0.2, Object.assign({ charSpace: 0.35 }, mid));
+    }
+
+    return {
+      blob: doc.output('blob'),
+      nome: 'radar-concursos-' + (formato === 'resumo' ? 'resumo-' : '') + agora.getFullYear() + '-' + dd(agora.getMonth() + 1) + '-' + dd(agora.getDate()) + '.pdf',
+      paginas: n,
+    };
+  }
+
+  const dlgPdf = document.getElementById('dlg-pdf');
+  const pdfStatus = document.getElementById('pdf-status');
+  const pdfBaixar = document.getElementById('pdf-baixar');
+  const pdfCompartilhar = document.getElementById('pdf-compartilhar');
+  let pdfAtual = null;
+  let pdfVez = 0;
+  function podeCompartilharArquivo() {
+    try { return !!(navigator.canShare && navigator.canShare({ files: [new File(['%PDF'], 'teste.pdf', { type: 'application/pdf' })] })); } catch (e) { return false; }
+  }
+  async function gerarPDF() {
+    const qtd = filtrar().visiveis.length;
+    const formato = (dlgPdf.querySelector('input[name="pdf-formato"]:checked') || {}).value || 'completo';
+    pdfAtual = null;
+    pdfBaixar.disabled = true;
+    pdfCompartilhar.disabled = true;
+    document.getElementById('pdf-resumo').textContent = qtd
+      ? 'O relatório traz o seu perfil, o resumo, os próximos prazos e os ' + qtd + (qtd === 1 ? ' concurso' : ' concursos') + ' que estão na lista agora, na mesma ordem.'
+      : 'Não há concursos na lista com esse perfil e esses filtros. Ajuste o perfil ao lado para gerar o relatório.';
+    if (!qtd) { pdfStatus.textContent = ''; return; }
+    pdfStatus.textContent = 'Preparando o PDF…';
+    const vez = ++pdfVez;
+    try {
+      const pronto = await montarPDF(formato);
+      if (vez !== pdfVez) return;
+      pdfAtual = pronto;
+      pdfBaixar.disabled = false;
+      pdfCompartilhar.disabled = false;
+      pdfStatus.textContent = 'Pronto: ' + pronto.paginas + (pronto.paginas === 1 ? ' página.' : ' páginas.');
+    } catch (e) {
+      if (vez !== pdfVez) return;
+      pdfStatus.textContent = 'Não foi possível montar o PDF agora. Recarregue a página e tente de novo.';
+      if (window.console) console.error(e);
+    }
+  }
+  document.getElementById('btn-pdf').addEventListener('click', () => {
+    pdfCompartilhar.hidden = !podeCompartilharArquivo();
+    document.getElementById('pdf-app').hidden = !/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent);
+    if (typeof dlgPdf.showModal === 'function') { if (!dlgPdf.open) dlgPdf.showModal(); } else dlgPdf.setAttribute('open', '');
+    gerarPDF();
+  });
+  dlgPdf.querySelectorAll('input[name="pdf-formato"]').forEach((i) => i.addEventListener('change', gerarPDF));
+  pdfBaixar.addEventListener('click', () => {
+    if (!pdfAtual) return;
+    const url = URL.createObjectURL(pdfAtual.blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = pdfAtual.nome; a.rel = 'noopener';
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  });
+  pdfCompartilhar.addEventListener('click', async () => {
+    if (!pdfAtual) return;
+    const arquivo = new File([pdfAtual.blob], pdfAtual.nome, { type: 'application/pdf' });
+    try {
+      await navigator.share({ files: [arquivo], title: 'Radar de Concursos', text: 'Meu relatório do Radar de Concursos. Versão atualizada: ' + SITE });
+    } catch (e) {
+      if (e && e.name !== 'AbortError') pdfStatus.textContent = 'Não deu para compartilhar por aqui. Use "Baixar PDF".';
+    }
   });
 
   window.radarAvaliar = avaliar;

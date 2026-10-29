@@ -4,7 +4,8 @@ Consulta gratuita de concursos públicos previstos e abertos, por perfil
 (escolaridade, curso, salário mínimo, área e estado). Desenvolvido por OS Solution.
 
 - Página: `index.html` (sem dependências externas; fontes em `fontes/`, gráficos com d3 em `vendor/`).
+- Relatório em PDF: montado no navegador de quem usa, com jsPDF (`vendor/jspdf.umd.min.js`, carregado só ao clicar em "Gerar PDF") e as mesmas fontes convertidas para TrueType em `fontes/pdf/`. Nada é enviado.
 - Dados: `dados/concursos.json` — o campo `_campos` descreve o esquema. Atualizado de segunda a sexta por uma rotina.
 - Hospedagem: GitHub Pages (branch `main`, pasta raiz).
 
-Licenças de terceiros: d3 (ISC) em `vendor/LICENSE-d3.txt`; Josefin Slab e Public Sans (SIL OFL 1.1) e FreeSerif (GPLv3 com exceção de fontes) em `fontes/`.
+Licenças de terceiros: d3 (ISC) em `vendor/LICENSE-d3.txt`; jsPDF 4.2.1 (MIT) em `vendor/LICENSE-jspdf.txt`; Josefin Slab e Public Sans (SIL OFL 1.1) e FreeSerif (GPLv3 com exceção de fontes) em `fontes/`.
