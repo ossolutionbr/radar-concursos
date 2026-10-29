@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Radar de Concursos 2027 · OS Solution</title>
-<meta name="description" content="Veja em quais concursos públicos previstos e abertos você pode se inscrever: informe escolaridade, curso, salário e estado. Grátis, sem cadastro.">
+<meta name="description" content="Veja, entre os principais concursos públicos previstos e abertos, onde você pode se inscrever: informe escolaridade, curso, salário e estado. Grátis, sem cadastro.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Radar de Concursos 2027">
-<meta property="og:description" content="Veja em quais concursos públicos previstos e abertos você pode se inscrever: informe escolaridade, curso, salário e estado. Grátis, sem cadastro.">
+<meta property="og:description" content="Veja, entre os principais concursos públicos previstos e abertos, onde você pode se inscrever: informe escolaridade, curso, salário e estado. Grátis, sem cadastro.">
 <meta property="og:url" content="https://ossolutionbr.github.io/radar-concursos/">
 <meta name="theme-color" content="#1f3a68">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -289,7 +289,7 @@ img { max-width: 100%; }
 </header>
 
 <div class="wrap intro">
-  <p class="lede">Conte a sua escolaridade e o seu curso e veja em quais concursos você pode se inscrever, quanto pagam e em que fase cada um está.</p>
+  <p class="lede">Conte a sua escolaridade e o seu curso e veja, entre os principais concursos previstos e abertos, onde você pode se inscrever, quanto pagam e em que fase cada um está.</p>
   <span class="stamp" id="carimbo">Carregando a base de concursos…</span>
 </div>
 
@@ -468,6 +468,8 @@ img { max-width: 100%; }
   <div class="dlg-c">
     <p>Você preenche o seu perfil e o radar compara com os requisitos de cada concurso da base. Nada é enviado: a conta é feita aqui, no seu navegador.</p>
     <dl>
+      <dt>O que o radar cobre</dt>
+      <dd>Uma seleção dos principais concursos federais, estaduais, do Judiciário, de bancos e de estatais, de nível médio e superior. Não cobre todos os concursos do país: os municipais quase não entram, e um concurso novo pode levar alguns dias para aparecer aqui.</dd>
       <dt>Pode concorrer</dt>
       <dd>Sua escolaridade atende ao mínimo e, nos cargos de nível superior, o edital aceita qualquer área ou a sua área está na lista.</dd>
       <dt>Depende do edital</dt>
@@ -494,7 +496,7 @@ img { max-width: 100%; }
     <p><b>Versão de 29/10/2026.</b> Ao usar o Radar de Concursos, você concorda com estes termos.</p>
     <dl>
       <dt>O que é</dt>
-      <dd>Ferramenta gratuita de consulta que reúne informações públicas sobre concursos previstos, autorizados e abertos e indica, a partir do perfil que você informa, onde é possível se inscrever. Não exige cadastro.</dd>
+      <dd>Ferramenta gratuita de consulta que reúne informações públicas sobre uma seleção de concursos previstos, autorizados e abertos e indica, a partir do perfil que você informa, onde é possível se inscrever. Não exige cadastro.</dd>
       <dt>Informação, não edital</dt>
       <dd>Os dados vêm de editais, publicações oficiais e notícias, com o link da fonte em cada concurso. Podem conter erros, atrasos ou mudanças posteriores. O edital oficial e o órgão responsável sempre prevalecem: confira os requisitos, datas e valores antes de se inscrever ou tomar qualquer decisão.</dd>
       <dt>Sem vínculo</dt>
@@ -527,7 +529,7 @@ img { max-width: 100%; }
   <div class="dlg-h"><h2 id="dlg-sobre-t">Sobre</h2><button type="button" class="btn" data-fechar>Fechar</button></div>
   <div class="dlg-c">
     <p><b>Radar de Concursos 2027</b>, versão 1.0.</p>
-    <p>Reúne concursos públicos previstos, autorizados e abertos no Brasil e mostra, para cada perfil, onde é possível se inscrever.</p>
+    <p>Reúne uma seleção dos principais concursos públicos previstos, autorizados e abertos no Brasil e mostra, para cada perfil, onde é possível se inscrever.</p>
     <p id="sobre-base">Base de concursos carregando…</p>
     <p>Desenvolvido por <span class="marca" aria-label="OS Solution"><span class="os">OS</span><span class="barra"></span><span class="sol">SOLUTION</span></span></p>
   </div>
@@ -1033,9 +1035,9 @@ img { max-width: 100%; }
     Array.from(new Set(DADOS.map((r) => r.area))).sort((a, b) => a.localeCompare(b, 'pt')).forEach((a) => selArea.append(new Option(a, a)));
     const orgaos = new Set(DADOS.map((r) => r.orgao)).size;
     const quando = fmtDia(parse(META.atualizado_em));
-    document.getElementById('carimbo').textContent = 'Atualizado em ' + quando + ' · ' + DADOS.length + ' cargos de ' + orgaos + ' órgãos. Confira sempre o edital oficial.';
+    document.getElementById('carimbo').textContent = 'Atualizado em ' + quando + ' · seleção de ' + DADOS.length + ' cargos de ' + orgaos + ' órgãos · confira sempre o edital oficial.';
     document.getElementById('rodape-base').textContent = 'Base atualizada em ' + quando;
-    document.getElementById('sobre-base').textContent = 'Base atualizada em ' + quando + ', com ' + DADOS.length + ' cargos de ' + orgaos + ' órgãos.';
+    document.getElementById('sobre-base').textContent = 'Base atualizada em ' + quando + ', com uma seleção de ' + DADOS.length + ' cargos de ' + orgaos + ' órgãos.';
     mostrarMudancas();
     preencherFicha();
     abrirAba('lista');
